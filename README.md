@@ -1,7 +1,6 @@
 # 🏴‍☠️ Grand Line Portfolio
 
-A modern, fully responsive personal portfolio for **Gangam Varshith Reddy**, a
-cybersecurity professional. It pairs a clean, professional layout with a light
+A modern, fully responsive personal portfolio. It pairs a clean, professional layout with a light
 One Piece / pirate-map identity (treasure gold on a night-sea navy, a hidden
 Jolly Roger watermark, a spinning compass, and a bobbing anchor).
 
