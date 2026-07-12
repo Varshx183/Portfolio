@@ -6,7 +6,6 @@ One Piece / pirate-map identity (treasure gold on a night-sea navy, a hidden
 Jolly Roger watermark, a spinning compass, and a bobbing anchor).
 
 **Live site:** https://gangamvarshithreddy.vercel.app
-**Content editor (CMS):** https://gangamvarshithreddy.vercel.app/studio
 
 Built with Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion, and an
 embedded Sanity CMS so the whole site can be edited from a browser with no code.
