@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   THEME TOKENS
+   Colors are stored as raw "R G B" channels so Tailwind's `<alpha-value>`
+   opacity modifiers work (e.g. bg-ocean/40). Two themes share one identity.
+   ========================================================================== */
+
+:root {
+  /* ---- Light theme = "Day Sea" (parchment + ocean) ---- */
+  --bg: 244 240 227; /* warm parchment */
+  --bg-soft: 250 246 236;
+  --surface: 255 253 247;
+  --surface-2: 240 233 216;
+  --border: 199 184 152;
+
+  --ink: 26 42 66; /* deep navy text */
+  --ink-soft: 51 66 89;
+  --ink-muted: 78 90 112; /* darkened for AA contrast on parchment */
+
+  --gold: 199 146 45; /* readable gold on light */
+  --gold-soft: 205 156 56; /* deepened so gradient text stays rich on parchment */
+  --crimson: 197 48 48;
+  --ocean: 33 96 145;
+  --ocean-deep: 18 58 92;
+  --aqua: 24 138 154;
+  /* Ambient ocean-glow strength — kept faint on parchment so it reads as
+     atmosphere, not a grey smudge. */
+  --glow-a: 0.07;
+  /* Hidden Jolly Roger backdrop: aged sepia ink stamped on parchment. */
+  --jr-ink: 110 78 36;
+  --jr-a: 0.12;
+}
+
+.dark {
+  /* ---- Dark theme = "Night Sea" (navy + treasure gold) ---- */
+  --bg: 8 20 38; /* deep sea navy */
+  --bg-soft: 12 27 48;
+  --surface: 16 33 58;
+  --surface-2: 22 43 72;
+  --border: 44 71 107;
+
+  --ink: 233 240 250;
+  --ink-soft: 197 212 232;
+  --ink-muted: 143 164 194;
+
+  --gold: 240 191 92; /* glowing gold on dark */
+  --gold-soft: 246 209 133;
+  --crimson: 232 84 84;
+  --ocean: 58 140 196;
+  --ocean-deep: 12 40 72;
+  --aqua: 58 190 205;
+  /* Stronger glow reads well against the night sea. */
+  --glow-a: 0.2;
+  /* Hidden Jolly Roger backdrop: pale-gold light lifted off the navy. */
+  --jr-ink: 240 224 180;
+  --jr-a: 0.07;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchored sections so they clear the fixed navbar. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    /* The ambient ocean glow now lives on a fixed, GPU-composited layer
+       (see JollyRogerBackdrop) instead of a `background-attachment: fixed`
+       body image, which repainted on every scroll frame. */
+    @apply bg-bg text-ink font-sans antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight text-ink;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    @apply bg-gold/30 text-ink;
+  }
+
+  /* Visible focus ring for keyboard users (a11y). */
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-bg;
+  }
+
+  /* Respect users who prefer reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   COMPONENT UTILITIES
+   ========================================================================== */
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  /* Gold gradient text used for accents/headings. */
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-soft via-gold to-gold-soft bg-clip-text text-transparent;
+  }
+
+  /* Card surface used across sections. Kept opaque (no backdrop-blur) so the
+     many cards don't trigger costly backdrop-filter repaints while scrolling. */
+  .card {
+    @apply rounded-2xl border border-border bg-surface/90;
+  }
+
+  /* Small pill label. */
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-2/70 px-3 py-1 text-xs font-medium text-ink-soft;
+  }
+
+  /* Primary CTA button. */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-crimson px-6 py-3 font-semibold text-white shadow-poster transition-all duration-300 hover:-translate-y-0.5 hover:shadow-poster-lg focus-visible:ring-crimson;
+  }
+
+  /* Secondary / outline button. */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/60 bg-transparent px-6 py-3 font-semibold text-gold transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold/10;
+  }
+
+  /* Decorative rope divider dash. */
+  .rope {
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgb(var(--gold) / 0.5) 0 10px,
+      transparent 10px 20px
+    );
+  }
+}
+
+/* Custom scrollbar to match the theme. */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--bg-soft));
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--border));
+  border-radius: 999px;
+  border: 3px solid rgb(var(--bg-soft));
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--gold) / 0.7);
+}
+
+/* ==========================================================================
+   LENIS (inertial smooth scroll). When active, Lenis owns the scroll, so we
+   hand off from the native `scroll-behavior: smooth` to avoid double-easing.
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Fixed background layer sized to a STABLE viewport height (lvh) so it does
+   not resize — and drift ("wobble") — when the mobile browser's URL bar
+   shows/hides during scroll. Falls back to 100vh where lvh isn't supported.
+   ========================================================================== */
+.fixed-viewport-layer {
+  height: 100vh; /* fallback */
+  height: 100lvh; /* stable large viewport where supported */
+  /* JS sets --app-height to a height that only changes on orientation/width
+     change, never on the URL-bar's height-only resize (see SmoothScroll). */
+  height: var(--app-height, 100lvh);
+}
