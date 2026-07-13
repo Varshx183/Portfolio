@@ -66,7 +66,7 @@ export function Hero({
       </motion.div>
       <motion.div
         style={reduce ? undefined : { transform: transform(0.8) }}
-        className="pointer-events-none absolute bottom-52 right-6 -z-10 text-3xl opacity-70 sm:bottom-36 sm:right-8 sm:text-5xl md:right-10 md:bottom-44"
+        className="pointer-events-none absolute bottom-52 right-6 -z-10 text-4xl opacity-70 sm:bottom-36 sm:right-8 sm:text-6xl md:right-10 md:bottom-44 md:text-7xl"
         aria-hidden
       >
         <span className="inline-block animate-float">⚓</span>
