@@ -62,7 +62,7 @@ export function Hero({
         className="pointer-events-none absolute -right-6 top-20 -z-10 opacity-60 sm:-right-4 sm:opacity-80 md:-right-10 md:top-24 md:opacity-90"
         aria-hidden
       >
-        <Compass className="h-28 w-28 animate-spin-slow text-gold/70 sm:h-44 sm:w-44 md:h-56 md:w-56 lg:h-72 lg:w-72" />
+        <Compass className="h-40 w-40 animate-spin-slow text-gold/70 sm:h-60 sm:w-60 md:h-80 md:w-80 lg:h-96 lg:w-96 xl:h-[28rem] xl:w-[28rem]" />
       </motion.div>
       <motion.div
         style={reduce ? undefined : { transform: transform(0.8) }}
