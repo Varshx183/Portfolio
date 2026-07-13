@@ -30,20 +30,23 @@ export function Experience({
 
         {/* Timeline */}
         <ol className="relative mx-auto max-w-3xl">
-          {/* The route line */}
-          <div
-            className="absolute left-4 top-2 h-full w-0.5 sm:left-1/2 sm:-translate-x-1/2"
-            aria-hidden
-          >
-            <motion.div
-              className="h-full w-full origin-top rope"
-              style={{ backgroundSize: "2px 16px" }}
-              initial={reduce ? false : { scaleY: 0 }}
-              whileInView={{ scaleY: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1.1, ease: "easeInOut" }}
-            />
-          </div>
+          {/* The route line — only meaningful when it connects two or more
+              entries, so it's hidden for a single experience. */}
+          {experience.length > 1 && (
+            <div
+              className="absolute left-4 top-2 h-full w-0.5 sm:left-1/2 sm:-translate-x-1/2"
+              aria-hidden
+            >
+              <motion.div
+                className="h-full w-full origin-top rope"
+                style={{ backgroundSize: "2px 16px" }}
+                initial={reduce ? false : { scaleY: 0 }}
+                whileInView={{ scaleY: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.1, ease: "easeInOut" }}
+              />
+            </div>
+          )}
 
           {experience.map((item, i) => {
             const sideLeft = i % 2 === 0;
