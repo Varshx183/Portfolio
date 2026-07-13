@@ -2,22 +2,38 @@
 
 A personal portfolio built with Next.js and an embedded Sanity CMS.
 
-## Run locally
+## Getting started (run it on your machine)
 
-```bash
-npm install
-npm run dev
-```
+**Prerequisites:** Node.js 18 or newer (includes npm) and Git.
 
-Open http://localhost:3000
+1. Clone the repository and move into the folder:
 
-The editor is at `/studio`. Without a CMS connection the site runs from the
-local content in `src/content/site.ts`.
+   ```bash
+   git clone <repository-url>
+   cd portfolio
+   ```
+
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open http://localhost:3000 in your browser.
+
+The content editor is at `/studio`. Until you connect the CMS (below), the site
+runs from the local content in `src/content/site.ts`, so it works out of the box.
 
 ## Connect the CMS
 
 1. Create a free Sanity project and copy its **Project ID**.
-2. Create `.env.local` in the project root:
+2. Create a `.env.local` file in the project root:
 
    ```bash
    NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
@@ -33,4 +49,3 @@ local content in `src/content/site.ts`.
    Variables** (plus `NEXT_PUBLIC_SITE_URL` for your domain).
 3. Deploy. Every push to the default branch redeploys automatically.
 </content>
-</invoke>
