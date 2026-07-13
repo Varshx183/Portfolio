@@ -9,6 +9,12 @@ import type {
   SiteContent,
   Project,
   ProjectCategory,
+  Social,
+  SocialKey,
+  SkillGroup,
+  ExperienceItem,
+  EducationItem,
+  Certification,
 } from "@/content/types";
 
 /**
@@ -41,13 +47,21 @@ export const getContent = cache(async (): Promise<SiteContent> => {
     return {
       site: settings ? mapSettings(settings) : fallback.site,
       socials:
-        settings?.socials?.length > 0 ? settings.socials : fallback.socials,
-      skillGroups: skillGroups?.length ? skillGroups : fallback.skillGroups,
-      experience: experience?.length ? experience : fallback.experience,
-      education: education?.length ? education : fallback.education,
+        settings?.socials?.length > 0
+          ? settings.socials.map(mapSocial)
+          : fallback.socials,
+      skillGroups: skillGroups?.length
+        ? skillGroups.map(mapSkillGroup)
+        : fallback.skillGroups,
+      experience: experience?.length
+        ? experience.map(mapExperienceItem)
+        : fallback.experience,
+      education: education?.length
+        ? education.map(mapEducationItem)
+        : fallback.education,
       projects: projects?.length ? projects.map(mapProject) : fallback.projects,
       certifications: certifications?.length
-        ? certifications
+        ? certifications.map(mapCertification)
         : fallback.certifications,
       sections: mapSections(settings),
       hero: mapHero(settings),
@@ -129,6 +143,63 @@ function mapSettings(s: any): SiteContent["site"] {
     // URL is deployment config, not content — always from env/fallback.
     url: fallback.site.url,
     stats: s.stats?.length ? s.stats : fallback.site.stats,
+  };
+}
+
+/**
+ * The mappers below normalize CMS documents into the exact shapes the UI
+ * expects. Crucially, every array that a component will `.map()` over is coerced
+ * to a real array, so a half-filled CMS document (e.g. a skill group with no
+ * skills, or an experience entry with no bullets) can never crash the page.
+ */
+const arr = <T>(v: unknown): T[] => (Array.isArray(v) ? (v as T[]) : []);
+
+function mapSocial(s: any): Social {
+  return {
+    key: (s?.key ?? "email") as SocialKey,
+    label: s?.label ?? s?.key ?? "",
+    href: s?.href ?? "#",
+  };
+}
+
+function mapSkillGroup(g: any): SkillGroup {
+  return {
+    title: g?.title ?? "",
+    blurb: g?.blurb ?? "",
+    skills: arr<any>(g?.skills).map((s) => ({
+      name: s?.name ?? "",
+      icon: s?.icon ?? "react",
+      level: typeof s?.level === "number" ? s.level : 0,
+    })),
+  };
+}
+
+function mapExperienceItem(e: any): ExperienceItem {
+  return {
+    role: e?.role ?? "",
+    company: e?.company ?? "",
+    period: e?.period ?? "",
+    location: e?.location ?? "",
+    bullets: arr<string>(e?.bullets),
+    tags: arr<string>(e?.tags),
+  };
+}
+
+function mapEducationItem(e: any): EducationItem {
+  return {
+    degree: e?.degree ?? "",
+    school: e?.school ?? "",
+    period: e?.period ?? "",
+    detail: e?.detail ?? "",
+  };
+}
+
+function mapCertification(c: any): Certification {
+  return {
+    title: c?.title ?? "",
+    issuer: c?.issuer ?? "",
+    year: c?.year ?? "",
+    credentialUrl: c?.credentialUrl || undefined,
   };
 }
 
