@@ -22,9 +22,10 @@ import type {
 export const getContent = cache(async (): Promise<SiteContent> => {
   if (!isSanityConfigured) return fromFallback();
 
-  // Revalidate CMS content roughly once a minute (ISR), so published edits
-  // appear on the live site without a redeploy.
-  const opts = { next: { revalidate: 60 } } as const;
+  // Always fetch the latest published content (no caching), so an edit in the
+  // CMS shows on the next page load. `getContent` is wrapped in React `cache()`
+  // below, so this still runs only once per request.
+  const opts = { cache: "no-store" } as const;
 
   try {
     const [settings, projects, skillGroups, experience, education, certifications] =

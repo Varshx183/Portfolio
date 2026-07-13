@@ -11,9 +11,10 @@ import { Certifications } from "@/components/sections/Certifications";
 import { Contact } from "@/components/sections/Contact";
 import { getContent } from "@/lib/content";
 
-// Regenerate the page from the CMS at most once a minute (ISR) so published
-// content edits go live without a redeploy.
-export const revalidate = 60;
+// Render on every request so published CMS edits appear on the next refresh,
+// with no redeploy and no waiting. (Time-based ISR was serving a stale cached
+// copy for hours on a low-traffic site; the content fetch uses `no-store`.)
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const {
