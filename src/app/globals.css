@@ -114,7 +114,9 @@
 
 @layer components {
   .container-x {
-    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+    /* Grows with the viewport: comfortable on laptops, uses more of the width
+       on large and ultrawide monitors instead of a narrow centered column. */
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8 lg:max-w-7xl 2xl:max-w-[96rem];
   }
 
   /* Gold gradient text used for accents/headings. */

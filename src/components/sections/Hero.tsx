@@ -29,6 +29,17 @@ export function Hero({
   const reduce = useReducedMotion();
   const { ref, transform } = useParallax(18);
 
+  // Lay the stat boxes out to match how many there are, so there's never a
+  // blank cell (e.g. 3 stats no longer leaves an empty 4th box).
+  const statCount = Math.min(site.stats.length, 4);
+  const statCols =
+    ({
+      1: "grid-cols-1",
+      2: "grid-cols-2",
+      3: "grid-cols-3",
+      4: "grid-cols-2 sm:grid-cols-4",
+    } as Record<number, string>)[statCount] || "grid-cols-2 sm:grid-cols-4";
+
   return (
     <section
       id="home"
@@ -126,7 +137,7 @@ export function Hero({
           {/* Stats */}
           <motion.dl
             variants={item}
-            className="mt-12 grid max-w-xl grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-4"
+            className={`mt-12 grid max-w-xl gap-px overflow-hidden rounded-2xl border border-border bg-border ${statCols}`}
           >
             {site.stats.map((s) => (
               <div key={s.label} className="bg-surface/80 px-4 py-4 text-center backdrop-blur-sm">
