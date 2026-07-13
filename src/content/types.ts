@@ -95,6 +95,69 @@ export type NavKey =
   | "contact";
 export type NavLabels = Record<NavKey, string>;
 
+/* -------------------------------------------------------------------------- */
+/*  Editable UI copy — every remaining bit of on-screen text that isn't a      */
+/*  content record above. All optional in the CMS (blank = the default).       */
+/* -------------------------------------------------------------------------- */
+
+/** One "About" highlight card. */
+export type Highlight = { title: string; text: string };
+
+/** Copy for the Contact section (info card, résumé card, and form). */
+export type ContactCopy = {
+  cardHeading: string;
+  cardText: string;
+  resumeTitle: string;
+  resumeText: string;
+  resumeButton: string;
+  nameLabel: string;
+  emailLabel: string;
+  messageLabel: string;
+  namePlaceholder: string;
+  emailPlaceholder: string;
+  messagePlaceholder: string;
+  submitLabel: string;
+  sendingLabel: string;
+  successMessage: string;
+  errorMessage: string;
+};
+
+/** Small labels used across the Projects section (cards + modal + filter). */
+export type ProjectLabels = {
+  all: string;
+  empty: string;
+  wanted: string;
+  featured: string;
+  bounty: string;
+  crewTools: string;
+  live: string;
+  code: string;
+};
+
+/** Copy for the footer columns and credits. */
+export type FooterCopy = {
+  navHeading: string;
+  contactHeading: string;
+  resumeLabel: string;
+  copyright: string;
+  credit: string;
+};
+
+/** The full bundle of otherwise-hardcoded on-screen strings. */
+export type UiCopy = {
+  aboutHighlights: Highlight[];
+  posterStatus: string;
+  posterPlaceholder: string;
+  educationHeading: string;
+  certView: string;
+  navResume: string;
+  navResumeMobile: string;
+  loaderText: string;
+  projects: ProjectLabels;
+  contact: ContactCopy;
+  footer: FooterCopy;
+};
+
 export type SiteContent = {
   site: SiteInfo;
   socials: Social[];
@@ -106,4 +169,5 @@ export type SiteContent = {
   sections: SectionHeadings;
   hero: HeroCopy;
   nav: NavLabels;
+  copy: UiCopy;
 };

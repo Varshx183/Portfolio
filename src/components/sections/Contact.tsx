@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { FiSend, FiDownload, FiMail, FiMapPin, FiCheckCircle, FiAlertCircle } from "react-icons/fi";
-import type { SiteInfo, Social, SectionCopy } from "@/content/types";
+import type { SiteInfo, Social, SectionCopy, ContactCopy } from "@/content/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { SocialIcon } from "@/components/ui/SocialIcon";
@@ -17,10 +17,12 @@ export function Contact({
   site,
   socials,
   heading,
+  copy,
 }: {
   site: SiteInfo;
   socials: Social[];
   heading: SectionCopy;
+  copy: ContactCopy;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Errors>({});
@@ -94,11 +96,10 @@ export function Contact({
           <Reveal direction="right" className="flex flex-col gap-6">
             <div className="card p-6">
               <h3 className="font-display text-xl font-semibold text-ink">
-                Let&apos;s set sail together
+                {copy.cardHeading}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                I&apos;m open to full-time roles, freelance voyages, and
-                interesting collaborations. I usually reply within a day.
+                {copy.cardText}
               </p>
 
               <ul className="mt-5 space-y-3 text-sm">
@@ -141,14 +142,12 @@ export function Contact({
               </span>
               <div className="flex-1">
                 <p className="font-display font-semibold text-ink">
-                  Grab my résumé
+                  {copy.resumeTitle}
                 </p>
-                <p className="text-sm text-ink-muted">
-                  The full logbook — one PDF.
-                </p>
+                <p className="text-sm text-ink-muted">{copy.resumeText}</p>
               </div>
               <a href={site.resumeUrl} download className="btn-primary !px-5 !py-2.5 text-sm">
-                Download
+                {copy.resumeButton}
               </a>
             </div>
           </Reveal>
@@ -168,30 +167,30 @@ export function Contact({
 
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field
-                  label="Name"
+                  label={copy.nameLabel}
                   name="name"
                   type="text"
-                  placeholder="Nico Robin"
+                  placeholder={copy.namePlaceholder}
                   error={errors.name}
                 />
                 <Field
-                  label="Email"
+                  label={copy.emailLabel}
                   name="email"
                   type="email"
-                  placeholder="you@crew.com"
+                  placeholder={copy.emailPlaceholder}
                   error={errors.email}
                 />
               </div>
 
               <div className="mt-5">
                 <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink">
-                  Message
+                  {copy.messageLabel}
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   rows={5}
-                  placeholder="Tell me about your project or role…"
+                  placeholder={copy.messagePlaceholder}
                   aria-invalid={!!errors.message}
                   aria-describedby={errors.message ? "message-error" : undefined}
                   className="w-full resize-y rounded-xl border border-border bg-bg/60 px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-ink-muted/70 focus:border-gold"
@@ -208,7 +207,7 @@ export function Contact({
                 disabled={status === "submitting"}
                 className="btn-primary mt-6 w-full disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {status === "submitting" ? "Sending…" : "Send message"}
+                {status === "submitting" ? copy.sendingLabel : copy.submitLabel}
                 <FiSend />
               </button>
 
@@ -216,12 +215,12 @@ export function Contact({
               <div aria-live="polite" className="mt-4">
                 {status === "success" && (
                   <p className="flex items-center gap-2 rounded-lg bg-aqua/15 px-4 py-3 text-sm text-aqua">
-                    <FiCheckCircle /> Message sent! I&apos;ll be in touch soon.
+                    <FiCheckCircle /> {copy.successMessage}
                   </p>
                 )}
                 {status === "error" && (
                   <p className="flex items-center gap-2 rounded-lg bg-crimson/15 px-4 py-3 text-sm text-crimson">
-                    <FiAlertCircle /> Something went wrong. Please email me directly.
+                    <FiAlertCircle /> {copy.errorMessage}
                   </p>
                 )}
               </div>

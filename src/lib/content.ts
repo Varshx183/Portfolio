@@ -66,6 +66,7 @@ export const getContent = cache(async (): Promise<SiteContent> => {
       sections: mapSections(settings),
       hero: mapHero(settings),
       nav: mapNav(settings),
+      copy: mapCopy(settings),
     };
   } catch (err) {
     console.error("[content] Sanity fetch failed, using fallback:", err);
@@ -87,6 +88,38 @@ function fromFallback(): SiteContent {
     sections: fallback.sectionHeadings,
     hero: fallback.heroCopy,
     nav: fallback.navLabels,
+    copy: fallback.uiCopy,
+  };
+}
+
+/** Merge CMS UI copy over the defaults. Any blank field keeps its default, so
+ *  the CMS never has to be fully filled in for the site to read well. */
+function mapCopy(s: any): SiteContent["copy"] {
+  const d = fallback.uiCopy;
+  const pick = <T extends Record<string, any>>(cms: any, def: T): T =>
+    Object.fromEntries(
+      (Object.keys(def) as (keyof T)[]).map((k) => [k, cms?.[k] || def[k]])
+    ) as T;
+
+  const highlights = Array.isArray(s?.aboutHighlights) && s.aboutHighlights.length
+    ? s.aboutHighlights.map((h: any) => ({
+        title: h?.title ?? "",
+        text: h?.text ?? "",
+      }))
+    : d.aboutHighlights;
+
+  return {
+    aboutHighlights: highlights,
+    posterStatus: s?.posterStatus || d.posterStatus,
+    posterPlaceholder: s?.posterPlaceholder || d.posterPlaceholder,
+    educationHeading: s?.educationHeading || d.educationHeading,
+    certView: s?.certView || d.certView,
+    navResume: s?.navResume || d.navResume,
+    navResumeMobile: s?.navResumeMobile || d.navResumeMobile,
+    loaderText: s?.loaderText || d.loaderText,
+    projects: pick(s?.projectLabels, d.projects),
+    contact: pick(s?.contactCopy, d.contact),
+    footer: pick(s?.footerCopy, d.footer),
   };
 }
 
@@ -229,7 +262,18 @@ const settingsQuery = groq`*[_type == "siteSettings"][0]{
   socials,
   sections,
   hero,
-  nav
+  nav,
+  aboutHighlights,
+  posterStatus,
+  posterPlaceholder,
+  educationHeading,
+  certView,
+  navResume,
+  navResumeMobile,
+  loaderText,
+  projectLabels,
+  contactCopy,
+  footerCopy
 }`;
 
 const projectsQuery = groq`*[_type == "project"] | order(order asc, _createdAt asc){

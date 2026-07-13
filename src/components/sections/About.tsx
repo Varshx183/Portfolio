@@ -2,34 +2,25 @@
 
 import Image from "next/image";
 import { FiAnchor, FiCompass, FiMap, FiUser } from "react-icons/fi";
-import type { SiteInfo, SectionCopy } from "@/content/types";
+import type { SiteInfo, SectionCopy, Highlight } from "@/content/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 
-const highlights = [
-  {
-    icon: FiCompass,
-    title: "Security-minded",
-    text: "I think about how systems break, not just how they work.",
-  },
-  {
-    icon: FiAnchor,
-    title: "Thorough & methodical",
-    text: "Careful analysis and clean fixes, with no loose ends.",
-  },
-  {
-    icon: FiMap,
-    title: "Always learning",
-    text: "New tools, new threats. The map is never finished.",
-  },
-];
+// Icons cycle in order for however many highlight cards are configured.
+const highlightIcons = [FiCompass, FiAnchor, FiMap];
 
 export function About({
   site,
   heading,
+  highlights,
+  posterStatus = "Wanted Alive",
+  posterPlaceholder = "Wanted",
 }: {
   site: SiteInfo;
   heading: SectionCopy;
+  highlights: Highlight[];
+  posterStatus?: string;
+  posterPlaceholder?: string;
 }) {
   return (
     <section id="about" className="relative py-24 sm:py-28">
@@ -60,7 +51,9 @@ export function About({
                       <span className="grid h-24 w-24 place-items-center rounded-full border-2 border-gold/50 text-gold/70">
                         <FiUser size={44} />
                       </span>
-                      <p className="font-pirate text-2xl text-gold">Wanted</p>
+                      <p className="font-pirate text-2xl text-gold">
+                        {posterPlaceholder}
+                      </p>
                     </div>
                   )}
                 </div>
@@ -69,7 +62,7 @@ export function About({
                     {site.name}
                   </p>
                   <p className="text-xs uppercase tracking-[0.2em] text-gold">
-                    Wanted Alive
+                    {posterStatus}
                   </p>
                 </div>
               </div>
@@ -88,11 +81,13 @@ export function About({
             ))}
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {highlights.map((h, i) => (
-                <Reveal key={h.title} delay={0.15 + i * 0.1}>
+              {highlights.map((h, i) => {
+                const Icon = highlightIcons[i % highlightIcons.length];
+                return (
+                <Reveal key={`${h.title}-${i}`} delay={0.15 + i * 0.1}>
                   <div className="card h-full p-5 transition-transform hover:-translate-y-1">
                     <span className="mb-3 grid h-11 w-11 place-items-center rounded-xl bg-gold/15 text-gold">
-                      <h.icon size={20} />
+                      <Icon size={20} />
                     </span>
                     <p className="font-display font-semibold text-ink">
                       {h.title}
@@ -100,7 +95,8 @@ export function About({
                     <p className="mt-1 text-sm text-ink-muted">{h.text}</p>
                   </div>
                 </Reveal>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

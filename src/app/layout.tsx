@@ -93,7 +93,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { site } = await getContent();
+  const { site, copy } = await getContent();
 
   return (
     <html
@@ -103,7 +103,7 @@ export default async function RootLayout({
     >
       <body>
         <StructuredData />
-        <PageLoader name={site.name} />
+        <PageLoader name={site.name} tagline={copy.loaderText} />
         {/* Skip link for keyboard & screen-reader users (a11y). */}
         <a
           href="#home"

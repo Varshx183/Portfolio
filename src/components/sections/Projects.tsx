@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import type { Project, SectionCopy } from "@/content/types";
+import type { Project, SectionCopy, ProjectLabels } from "@/content/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { ProjectCard } from "@/components/projects/ProjectCard";
@@ -11,24 +11,27 @@ import { ProjectModal } from "@/components/projects/ProjectModal";
 export function Projects({
   projects,
   heading,
+  labels,
 }: {
   projects: Project[];
   heading: SectionCopy;
+  labels: ProjectLabels;
 }) {
-  const [filter, setFilter] = useState<string>("All");
+  const allLabel = labels.all;
+  const [filter, setFilter] = useState<string>(allLabel);
   const [active, setActive] = useState<Project | null>(null);
 
   const projectCategories = useMemo(
-    () => ["All", ...Array.from(new Set(projects.map((p) => p.category)))],
-    [projects]
+    () => [allLabel, ...Array.from(new Set(projects.map((p) => p.category)))],
+    [projects, allLabel]
   );
 
   const visible = useMemo(
     () =>
-      filter === "All"
+      filter === allLabel
         ? projects
         : projects.filter((p) => p.category === filter),
-    [filter, projects]
+    [filter, projects, allLabel]
   );
 
   return (
@@ -93,7 +96,11 @@ export function Projects({
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.35, delay: i * 0.04 }}
               >
-                <ProjectCard project={project} onOpen={() => setActive(project)} />
+                <ProjectCard
+                  project={project}
+                  labels={labels}
+                  onOpen={() => setActive(project)}
+                />
               </motion.li>
             ))}
           </AnimatePresence>
@@ -101,13 +108,17 @@ export function Projects({
 
         {visible.length === 0 && (
           <Reveal className="py-16 text-center text-ink-muted">
-            No bounties in these waters yet. Try another crew.
+            {labels.empty}
           </Reveal>
         )}
       </div>
 
       {/* Detail modal */}
-      <ProjectModal project={active} onClose={() => setActive(null)} />
+      <ProjectModal
+        project={active}
+        labels={labels}
+        onClose={() => setActive(null)}
+      />
     </section>
   );
 }

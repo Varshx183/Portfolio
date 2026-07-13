@@ -16,7 +16,17 @@ import { lockScroll, unlockScroll } from "@/lib/smoothScroll";
  * - Collapses into an animated drawer on mobile.
  * - Adds a solid/blurred background once the user scrolls.
  */
-export function Navbar({ site, nav }: { site: SiteInfo; nav: NavLabels }) {
+export function Navbar({
+  site,
+  nav,
+  resumeLabel = "Résumé",
+  resumeMobileLabel = "Download Résumé",
+}: {
+  site: SiteInfo;
+  nav: NavLabels;
+  resumeLabel?: string;
+  resumeMobileLabel?: string;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const sectionIds = navLinks.map((l) => l.href.replace("#", ""));
@@ -113,7 +123,7 @@ export function Navbar({ site, nav }: { site: SiteInfo; nav: NavLabels }) {
         {/* Right controls */}
         <div className="flex items-center gap-2">
           <a href={site.resumeUrl} download className="hidden btn-ghost !px-4 !py-2 !text-sm md:inline-flex">
-            Résumé
+            {resumeLabel}
           </a>
           <SoundToggle />
           <ThemeToggle />
@@ -172,7 +182,7 @@ export function Navbar({ site, nav }: { site: SiteInfo; nav: NavLabels }) {
                     onClick={() => setOpen(false)}
                     className="btn-primary w-full"
                   >
-                    Download Résumé
+                    {resumeMobileLabel}
                   </a>
                 </li>
               </ul>

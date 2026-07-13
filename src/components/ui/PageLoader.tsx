@@ -13,7 +13,13 @@ import { Compass } from "@/components/ui/illustrations/Compass";
  * fallback timeout so it can never get stuck. Respects reduced motion via the
  * global CSS rule that neutralizes animations.
  */
-export function PageLoader({ name }: { name: string }) {
+export function PageLoader({
+  name,
+  tagline = "Charting the course…",
+}: {
+  name: string;
+  tagline?: string;
+}) {
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
 
@@ -61,7 +67,7 @@ export function PageLoader({ name }: { name: string }) {
             </div>
             <p className="font-pirate text-2xl text-gradient-gold">{name}</p>
             <span className="text-[11px] uppercase tracking-[0.3em] text-ink-muted">
-              Charting the course…
+              {tagline}
             </span>
           </div>
         </motion.div>

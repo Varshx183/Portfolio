@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiX, FiExternalLink, FiGithub } from "react-icons/fi";
-import type { Project } from "@/content/site";
+import type { Project, ProjectLabels } from "@/content/site";
 import { lockScroll, unlockScroll } from "@/lib/smoothScroll";
 
 /**
@@ -15,9 +15,11 @@ import { lockScroll, unlockScroll } from "@/lib/smoothScroll";
  */
 export function ProjectModal({
   project,
+  labels,
   onClose,
 }: {
   project: Project | null;
+  labels: ProjectLabels;
   onClose: () => void;
 }) {
   const closeRef = useRef<HTMLButtonElement>(null);
@@ -115,7 +117,7 @@ export function ProjectModal({
 
               <div className="mt-6">
                 <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted">
-                  Crew &amp; Tools
+                  {labels.crewTools}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((t) => (
@@ -137,7 +139,7 @@ export function ProjectModal({
                     rel="noopener noreferrer"
                     className="btn-primary"
                   >
-                    Live demo <FiExternalLink />
+                    {labels.live} <FiExternalLink />
                   </a>
                 )}
                 {project.links.code && (
@@ -147,7 +149,7 @@ export function ProjectModal({
                     rel="noopener noreferrer"
                     className="btn-ghost"
                   >
-                    Source code <FiGithub />
+                    {labels.code} <FiGithub />
                   </a>
                 )}
               </div>

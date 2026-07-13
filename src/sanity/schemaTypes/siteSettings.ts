@@ -18,6 +18,8 @@ export const siteSettings = defineType({
     { name: "contact", title: "✉️ Contact & Résumé" },
     { name: "headings", title: "🏷️ Section Titles" },
     { name: "menu", title: "🧭 Menu Labels" },
+    { name: "footer", title: "⚓ Footer" },
+    { name: "labels", title: "🔖 Buttons & Small Labels" },
   ],
   fields: [
     /* ----------------------------- Home Page ----------------------------- */
@@ -109,6 +111,37 @@ export const siteSettings = defineType({
       group: "about",
       options: { hotspot: true },
     }),
+    defineField({
+      name: "aboutHighlights",
+      title: "Highlight cards",
+      description: "The three small cards next to your About text.",
+      type: "array",
+      group: "about",
+      of: [
+        defineArrayMember({
+          type: "object",
+          fields: [
+            { name: "title", title: "Card title", type: "string" },
+            { name: "text", title: "Card text", type: "text", rows: 2 },
+          ],
+          preview: { select: { title: "title", subtitle: "text" } },
+        }),
+      ],
+    }),
+    defineField({
+      name: "posterStatus",
+      title: "Poster label",
+      description: 'The gold line under your name on the photo poster (e.g. "Wanted Alive").',
+      type: "string",
+      group: "about",
+    }),
+    defineField({
+      name: "posterPlaceholder",
+      title: "Poster label when no photo is set",
+      description: 'Shown on the empty poster before you add a photo (e.g. "Wanted").',
+      type: "string",
+      group: "about",
+    }),
 
     /* -------------------------- Contact & Résumé ------------------------- */
     defineField({
@@ -163,6 +196,31 @@ export const siteSettings = defineType({
       group: "contact",
       rows: 2,
     }),
+    defineField({
+      name: "contactCopy",
+      title: "Contact section text",
+      description: "The wording of the contact card, résumé card, and form.",
+      type: "object",
+      group: "contact",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        { name: "cardHeading", title: "Info card heading", type: "string" },
+        { name: "cardText", title: "Info card text", type: "text", rows: 3 },
+        { name: "resumeTitle", title: "Résumé card title", type: "string" },
+        { name: "resumeText", title: "Résumé card subtitle", type: "string" },
+        { name: "resumeButton", title: "Résumé button text", type: "string" },
+        { name: "nameLabel", title: "Form: Name label", type: "string" },
+        { name: "emailLabel", title: "Form: Email label", type: "string" },
+        { name: "messageLabel", title: "Form: Message label", type: "string" },
+        { name: "namePlaceholder", title: "Form: Name placeholder", type: "string" },
+        { name: "emailPlaceholder", title: "Form: Email placeholder", type: "string" },
+        { name: "messagePlaceholder", title: "Form: Message placeholder", type: "string" },
+        { name: "submitLabel", title: "Form: Send button", type: "string" },
+        { name: "sendingLabel", title: "Form: Sending… text", type: "string" },
+        { name: "successMessage", title: "Form: Success message", type: "string" },
+        { name: "errorMessage", title: "Form: Error message", type: "string" },
+      ],
+    }),
 
     /* --------------------------- Section Titles -------------------------- */
     defineField({
@@ -200,6 +258,76 @@ export const siteSettings = defineType({
         { name: "projects", title: "Projects link", type: "string" },
         { name: "certifications", title: "Certifications link", type: "string" },
         { name: "contact", title: "Contact link", type: "string" },
+      ],
+    }),
+
+    /* ------------------------------ Footer ------------------------------- */
+    defineField({
+      name: "footerCopy",
+      title: "Footer text",
+      type: "object",
+      group: "footer",
+      options: { collapsible: true, collapsed: false },
+      fields: [
+        { name: "navHeading", title: 'Links column heading (e.g. "Navigate")', type: "string" },
+        { name: "contactHeading", title: 'Contact column heading (e.g. "Set Sail")', type: "string" },
+        { name: "resumeLabel", title: "Résumé download link text", type: "string" },
+        {
+          name: "copyright",
+          title: "Copyright tagline",
+          description: "Shown after “© year Your Name.” at the bottom.",
+          type: "string",
+        },
+        { name: "credit", title: "Credit line (bottom right)", type: "string" },
+      ],
+    }),
+
+    /* ------------------------ Buttons & Small Labels --------------------- */
+    defineField({
+      name: "educationHeading",
+      title: 'Education heading (in Experience, e.g. "Navigation School")',
+      type: "string",
+      group: "labels",
+    }),
+    defineField({
+      name: "certView",
+      title: 'Certification link text (e.g. "View credential")',
+      type: "string",
+      group: "labels",
+    }),
+    defineField({
+      name: "navResume",
+      title: "Header résumé button (desktop)",
+      type: "string",
+      group: "labels",
+    }),
+    defineField({
+      name: "navResumeMobile",
+      title: "Header résumé button (mobile menu)",
+      type: "string",
+      group: "labels",
+    }),
+    defineField({
+      name: "loaderText",
+      title: 'Loading screen text (e.g. "Charting the course…")',
+      type: "string",
+      group: "labels",
+    }),
+    defineField({
+      name: "projectLabels",
+      title: "Projects section labels",
+      type: "object",
+      group: "labels",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        { name: "all", title: '"All" filter label', type: "string" },
+        { name: "empty", title: "No-results message", type: "string" },
+        { name: "wanted", title: 'Card banner (e.g. "Wanted")', type: "string" },
+        { name: "featured", title: 'Featured badge (e.g. "Featured")', type: "string" },
+        { name: "bounty", title: 'Bounty label (e.g. "Bounty")', type: "string" },
+        { name: "crewTools", title: 'Tech list heading (e.g. "Crew & Tools")', type: "string" },
+        { name: "live", title: 'Live-demo button (e.g. "Live demo")', type: "string" },
+        { name: "code", title: 'Source-code button (e.g. "Source code")', type: "string" },
       ],
     }),
   ],

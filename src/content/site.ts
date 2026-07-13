@@ -23,6 +23,7 @@ import type {
   HeroCopy,
   NavKey,
   NavLabels,
+  UiCopy,
 } from "./types";
 
 // Re-export the shared types so existing `@/content/site` type imports keep working.
@@ -44,6 +45,11 @@ export type {
   HeroCopy,
   NavKey,
   NavLabels,
+  Highlight,
+  ContactCopy,
+  ProjectLabels,
+  FooterCopy,
+  UiCopy,
 } from "./types";
 
 /* -------------------------------------------------------------------------- */
@@ -376,3 +382,76 @@ export const certifications: Certification[] = [
     credentialUrl: "https://example.com",
   },
 ];
+
+/* -------------------------------------------------------------------------- */
+/*  UI copy — defaults for every other on-screen string. Each is editable in   */
+/*  the CMS; leaving a field blank there falls back to the value here.         */
+/* -------------------------------------------------------------------------- */
+
+export const uiCopy: UiCopy = {
+  // About section highlight cards.
+  aboutHighlights: [
+    {
+      title: "Security-minded",
+      text: "I think about how systems break, not just how they work.",
+    },
+    {
+      title: "Thorough & methodical",
+      text: "Careful analysis and clean fixes, with no loose ends.",
+    },
+    {
+      title: "Always learning",
+      text: "New tools, new threats. The map is never finished.",
+    },
+  ],
+  // About "wanted poster" labels.
+  posterStatus: "Wanted Alive",
+  posterPlaceholder: "Wanted",
+  // Experience section: the heading above the education cards.
+  educationHeading: "Navigation School",
+  // Certifications: the link under each card.
+  certView: "View credential",
+  // Navbar résumé buttons (desktop + mobile drawer).
+  navResume: "Résumé",
+  navResumeMobile: "Download Résumé",
+  // Intro loading overlay.
+  loaderText: "Charting the course…",
+  // Projects section labels (filter, cards, and modal).
+  projects: {
+    all: "All",
+    empty: "No bounties in these waters yet. Try another crew.",
+    wanted: "Wanted",
+    featured: "Featured",
+    bounty: "Bounty",
+    crewTools: "Crew & Tools",
+    live: "Live demo",
+    code: "Source code",
+  },
+  // Contact section: info card, résumé card, and form.
+  contact: {
+    cardHeading: "Let's set sail together",
+    cardText:
+      "I'm open to full-time roles, freelance voyages, and interesting collaborations. I usually reply within a day.",
+    resumeTitle: "Grab my résumé",
+    resumeText: "The full logbook — one PDF.",
+    resumeButton: "Download",
+    nameLabel: "Name",
+    emailLabel: "Email",
+    messageLabel: "Message",
+    namePlaceholder: "Nico Robin",
+    emailPlaceholder: "you@crew.com",
+    messagePlaceholder: "Tell me about your project or role…",
+    submitLabel: "Send message",
+    sendingLabel: "Sending…",
+    successMessage: "Message sent! I'll be in touch soon.",
+    errorMessage: "Something went wrong. Please email me directly.",
+  },
+  // Footer columns and credits.
+  footer: {
+    navHeading: "Navigate",
+    contactHeading: "Set Sail",
+    resumeLabel: "Download Résumé ↓",
+    copyright: "Sailing the Grand Line of the web.",
+    credit: "Built with Next.js, Tailwind & Framer Motion.",
+  },
+};

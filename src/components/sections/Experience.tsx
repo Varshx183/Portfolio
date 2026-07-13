@@ -10,10 +10,12 @@ export function Experience({
   experience,
   education,
   heading,
+  educationHeading = "Navigation School",
 }: {
   experience: ExperienceItem[];
   education: EducationItem[];
   heading: SectionCopy;
+  educationHeading?: string;
 }) {
   const reduce = useReducedMotion();
 
@@ -112,7 +114,7 @@ export function Experience({
               <FiBookOpen size={20} />
             </span>
             <h3 className="font-display text-2xl font-semibold text-ink">
-              Navigation School
+              {educationHeading}
             </h3>
           </Reveal>
 

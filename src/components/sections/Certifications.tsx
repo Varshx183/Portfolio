@@ -8,9 +8,11 @@ import { Reveal } from "@/components/ui/Reveal";
 export function Certifications({
   certifications,
   heading,
+  viewLabel = "View credential",
 }: {
   certifications: Certification[];
   heading: SectionCopy;
+  viewLabel?: string;
 }) {
   return (
     <section id="certifications" className="relative py-24 sm:py-28">
@@ -46,7 +48,7 @@ export function Certifications({
                     rel="noopener noreferrer"
                     className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-md px-2 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:text-gold"
                   >
-                    View credential <FiExternalLink size={14} />
+                    {viewLabel} <FiExternalLink size={14} />
                   </a>
                 )}
               </article>

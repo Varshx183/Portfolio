@@ -28,29 +28,52 @@ export default async function Home() {
     sections,
     hero,
     nav,
+    copy,
   } = await getContent();
 
   return (
     <>
       <ScrollProgress />
-      <Navbar site={site} nav={nav} />
+      <Navbar
+        site={site}
+        nav={nav}
+        resumeLabel={copy.navResume}
+        resumeMobileLabel={copy.navResumeMobile}
+      />
       <main id="main">
         <Hero site={site} socials={socials} hero={hero} />
-        <About site={site} heading={sections.about} />
+        <About
+          site={site}
+          heading={sections.about}
+          highlights={copy.aboutHighlights}
+          posterStatus={copy.posterStatus}
+          posterPlaceholder={copy.posterPlaceholder}
+        />
         <Skills skillGroups={skillGroups} heading={sections.skills} />
         <Experience
           experience={experience}
           education={education}
           heading={sections.experience}
+          educationHeading={copy.educationHeading}
         />
-        <Projects projects={projects} heading={sections.projects} />
+        <Projects
+          projects={projects}
+          heading={sections.projects}
+          labels={copy.projects}
+        />
         <Certifications
           certifications={certifications}
           heading={sections.certifications}
+          viewLabel={copy.certView}
         />
-        <Contact site={site} socials={socials} heading={sections.contact} />
+        <Contact
+          site={site}
+          socials={socials}
+          heading={sections.contact}
+          copy={copy.contact}
+        />
       </main>
-      <Footer site={site} socials={socials} nav={nav} />
+      <Footer site={site} socials={socials} nav={nav} copy={copy.footer} />
       <BackToTop />
     </>
   );

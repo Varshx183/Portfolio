@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { FiExternalLink, FiGithub, FiEye } from "react-icons/fi";
-import type { Project } from "@/content/site";
+import type { Project, ProjectLabels } from "@/content/site";
 
 /**
  * "Wanted Poster" project card. Hover lifts + tilts the poster and reveals a
@@ -12,9 +12,11 @@ import type { Project } from "@/content/site";
  */
 export function ProjectCard({
   project,
+  labels,
   onOpen,
 }: {
   project: Project;
+  labels: ProjectLabels;
   onOpen: () => void;
 }) {
   const reduce = useReducedMotion();
@@ -37,11 +39,11 @@ export function ProjectCard({
       {/* Poster header */}
       <div className="flex items-center justify-between border-b-2 border-dashed border-gold/40 bg-surface-2 px-4 py-2">
         <span className="font-pirate text-sm uppercase tracking-[0.25em] text-gold">
-          Wanted
+          {labels.wanted}
         </span>
         {project.featured && (
           <span className="rounded-full bg-crimson/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-crimson">
-            Featured
+            {labels.featured}
           </span>
         )}
       </div>
@@ -102,7 +104,7 @@ export function ProjectCard({
         {project.bounty && (
           <div className="mb-4 flex items-baseline gap-1 border-y border-dashed border-border py-2">
             <span className="text-xs uppercase tracking-wide text-ink-muted">
-              Bounty
+              {labels.bounty}
             </span>
             <span className="ml-auto font-pirate text-xl text-crimson">
               ฿ {project.bounty}

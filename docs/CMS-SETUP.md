@@ -12,12 +12,20 @@ The left-hand menu mirrors the website:
   things):
   - **🏠 Home Page**: your name, the title under it, the one-line intro, the
     location pill, the two buttons, and the highlight numbers (stats).
-  - **🧑 About Section**: the About paragraphs and profile photo (upload).
+  - **🧑 About Section**: the About paragraphs, profile photo (upload), the
+    three highlight cards, and the poster labels.
   - **✉️ Contact & Résumé**: contact email, résumé PDF (upload), social links,
-    and the search-engine description.
+    the search-engine description, and all of the contact card / form wording.
   - **🏷️ Section Titles**: the label, title, and subtitle at the top of each
     section (leave any field blank to keep the default).
   - **🧭 Menu Labels**: rename the links in the top navigation menu.
+  - **⚓ Footer**: the footer column headings, résumé link, and credit lines.
+  - **🔖 Buttons & Small Labels**: every remaining button and label (project
+    card/modal labels, the "View credential" link, the Education heading, the
+    header résumé buttons, and the loading-screen text).
+
+Practically every visible line is editable; anything left blank falls back to a
+sensible default, so you only fill in what you want to change.
 - **Projects**, **Skills**, **Work Experience**, **Education**, and
   **Certifications**: repeatable lists. Each has a **Sort order** field (lower
   numbers appear first).

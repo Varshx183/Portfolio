@@ -1,5 +1,5 @@
 import { navLinks } from "@/content/site";
-import type { SiteInfo, Social, NavLabels } from "@/content/types";
+import type { SiteInfo, Social, NavLabels, FooterCopy } from "@/content/types";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 
 /** Site footer: brand blurb, quick nav, social links, and a rope divider. */
@@ -7,10 +7,12 @@ export function Footer({
   site,
   socials,
   nav,
+  copy,
 }: {
   site: SiteInfo;
   socials: Social[];
   nav: NavLabels;
+  copy: FooterCopy;
 }) {
   const year = new Date().getFullYear();
 
@@ -47,7 +49,7 @@ export function Footer({
         {/* Quick nav */}
         <nav aria-label="Footer">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-            Navigate
+            {copy.navHeading}
           </p>
           <ul className="space-y-2.5">
             {navLinks.map((l) => (
@@ -66,7 +68,7 @@ export function Footer({
         {/* Contact */}
         <div>
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-            Set Sail
+            {copy.contactHeading}
           </p>
           <ul className="space-y-2.5 text-sm text-ink-soft">
             <li>
@@ -84,7 +86,7 @@ export function Footer({
                 download
                 className="transition-colors hover:text-gold"
               >
-                Download Résumé ↓
+                {copy.resumeLabel}
               </a>
             </li>
           </ul>
@@ -94,9 +96,9 @@ export function Footer({
       <div className="border-t border-border/70">
         <div className="container-x flex flex-col items-center justify-between gap-2 py-6 text-xs text-ink-muted sm:flex-row">
           <p>
-            © {year} {site.name}. Sailing the Grand Line of the web.
+            © {year} {site.name}. {copy.copyright}
           </p>
-          <p>Built with Next.js, Tailwind &amp; Framer Motion.</p>
+          <p>{copy.credit}</p>
         </div>
       </div>
     </footer>
