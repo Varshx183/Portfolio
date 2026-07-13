@@ -30,12 +30,12 @@ export function Skills({
           subtitle={heading.subtitle}
         />
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="flex flex-wrap justify-center gap-6">
           {skillGroups.map((group, gi) => (
             <Reveal
               key={group.title}
               delay={gi * 0.1}
-              className="card flex flex-col p-6"
+              className="card flex w-full flex-col p-6 md:w-[calc(33.333%-1rem)]"
             >
               <div className="mb-5">
                 <h3 className="font-display text-xl font-semibold text-gold">

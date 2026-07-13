@@ -84,7 +84,7 @@ export function Projects({
         {/* Grid */}
         <motion.ul
           layout
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="flex flex-wrap justify-center gap-6"
         >
           <AnimatePresence mode="popLayout">
             {visible.map((project, i) => (
@@ -95,6 +95,7 @@ export function Projects({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.35, delay: i * 0.04 }}
+                className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
               >
                 <ProjectCard
                   project={project}

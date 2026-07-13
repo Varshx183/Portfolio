@@ -23,9 +23,13 @@ export function Certifications({
           subtitle={heading.subtitle}
         />
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="flex flex-wrap justify-center gap-5">
           {certifications.map((cert, i) => (
-            <Reveal key={cert.title} delay={i * 0.08} className="h-full">
+            <Reveal
+              key={cert.title}
+              delay={i * 0.08}
+              className="w-full sm:w-[calc(50%-0.625rem)] lg:w-[calc(25%-0.9375rem)]"
+            >
               <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface p-6 text-center transition-all hover:-translate-y-1.5 hover:border-gold hover:shadow-gold">
                 {/* Glow ring */}
                 <span className="pointer-events-none absolute -top-10 left-1/2 h-24 w-24 -translate-x-1/2 rounded-full bg-gold/20 blur-2xl transition-opacity group-hover:opacity-100" />

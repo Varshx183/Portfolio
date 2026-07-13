@@ -118,9 +118,13 @@ export function Experience({
             </h3>
           </Reveal>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="flex flex-wrap justify-center gap-4">
             {education.map((edu, i) => (
-              <Reveal key={edu.school} delay={i * 0.1}>
+              <Reveal
+                key={edu.school}
+                delay={i * 0.1}
+                className="w-full sm:w-[calc(50%-0.5rem)]"
+              >
                 <article className="card h-full p-5 transition-transform hover:-translate-y-1">
                   <span className="pill mb-2 text-gold">{edu.period}</span>
                   <h4 className="font-display text-lg font-semibold text-ink">
