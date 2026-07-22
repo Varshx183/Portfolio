@@ -2,9 +2,10 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { FiArrowDown, FiMapPin } from "react-icons/fi";
-import type { SiteInfo, Social, HeroCopy } from "@/content/types";
+import type { SiteInfo, Social, HeroCopy, AskCopy } from "@/content/types";
 import { SocialIcon } from "@/components/ui/SocialIcon";
 import { Waves } from "@/components/ui/Waves";
+import { AskBar } from "@/components/ui/AskBar";
 import { Compass } from "@/components/ui/illustrations/Compass";
 import { useParallax } from "@/hooks/useParallax";
 
@@ -21,10 +22,12 @@ export function Hero({
   site,
   socials,
   hero,
+  ask,
 }: {
   site: SiteInfo;
   socials: Social[];
   hero: HeroCopy;
+  ask: AskCopy;
 }) {
   const reduce = useReducedMotion();
   const { ref, transform } = useParallax(18);
@@ -116,6 +119,11 @@ export function Hero({
             <a href="#contact" className="btn-ghost">
               {hero.ctaSecondary}
             </a>
+          </motion.div>
+
+          {/* Ask-me-anything shortcut bar */}
+          <motion.div variants={item}>
+            <AskBar copy={ask} resumeUrl={site.resumeUrl} />
           </motion.div>
 
           {/* Socials */}

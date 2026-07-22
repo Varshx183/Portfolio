@@ -76,6 +76,33 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
+      name: "askCopy",
+      title: "“Ask me anything” bar",
+      description:
+        "The search-style bar under your buttons. Each label below is a shortcut chip that jumps to that section.",
+      type: "object",
+      group: "home",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        { name: "placeholder", title: "Placeholder text", type: "string" },
+        {
+          name: "notFound",
+          title: "Message when nothing matches",
+          type: "string",
+        },
+        { name: "projects", title: "Chip: goes to Projects", type: "string" },
+        { name: "skills", title: "Chip: goes to Skills", type: "string" },
+        { name: "experience", title: "Chip: goes to Experience", type: "string" },
+        {
+          name: "certifications",
+          title: "Chip: goes to Certifications",
+          type: "string",
+        },
+        { name: "resume", title: "Chip: opens your résumé", type: "string" },
+        { name: "contact", title: "Chip: goes to Contact", type: "string" },
+      ],
+    }),
+    defineField({
       name: "stats",
       title: "Highlight numbers",
       description:

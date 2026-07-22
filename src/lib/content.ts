@@ -109,6 +109,7 @@ function mapCopy(s: any): SiteContent["copy"] {
     : d.aboutHighlights;
 
   return {
+    ask: pick(s?.askCopy, d.ask),
     aboutHighlights: highlights,
     posterStatus: s?.posterStatus || d.posterStatus,
     posterPlaceholder: s?.posterPlaceholder || d.posterPlaceholder,
@@ -263,6 +264,7 @@ const settingsQuery = groq`*[_type == "siteSettings"][0]{
   sections,
   hero,
   nav,
+  askCopy,
   aboutHighlights,
   posterStatus,
   posterPlaceholder,

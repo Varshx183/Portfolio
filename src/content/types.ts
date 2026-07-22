@@ -143,8 +143,22 @@ export type FooterCopy = {
   credit: string;
 };
 
+/** Copy for the hero "ask me anything" bar and its suggestion chips. Each chip
+ *  label maps to a fixed section of the page. */
+export type AskCopy = {
+  placeholder: string;
+  notFound: string;
+  projects: string;
+  skills: string;
+  experience: string;
+  certifications: string;
+  resume: string;
+  contact: string;
+};
+
 /** The full bundle of otherwise-hardcoded on-screen strings. */
 export type UiCopy = {
+  ask: AskCopy;
   aboutHighlights: Highlight[];
   posterStatus: string;
   posterPlaceholder: string;

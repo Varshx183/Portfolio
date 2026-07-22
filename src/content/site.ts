@@ -389,6 +389,17 @@ export const certifications: Certification[] = [
 /* -------------------------------------------------------------------------- */
 
 export const uiCopy: UiCopy = {
+  // Hero "ask me anything" bar. Each chip label jumps to a fixed section.
+  ask: {
+    placeholder: "ask me anything…",
+    notFound: "Not on this map. Try one of these:",
+    projects: "see my work",
+    skills: "skills you have?",
+    experience: "experience you have?",
+    certifications: "certifications you have?",
+    resume: "résumé",
+    contact: "wanna chat?",
+  },
   // About section highlight cards.
   aboutHighlights: [
     {

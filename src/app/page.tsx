@@ -41,7 +41,7 @@ export default async function Home() {
         resumeMobileLabel={copy.navResumeMobile}
       />
       <main id="main">
-        <Hero site={site} socials={socials} hero={hero} />
+        <Hero site={site} socials={socials} hero={hero} ask={copy.ask} />
         <About
           site={site}
           heading={sections.about}
