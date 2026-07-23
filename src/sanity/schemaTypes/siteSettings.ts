@@ -352,7 +352,7 @@ export const siteSettings = defineType({
         { name: "wanted", title: 'Card banner (e.g. "Wanted")', type: "string" },
         { name: "featured", title: 'Featured badge (e.g. "Featured")', type: "string" },
         { name: "bounty", title: 'Bounty label (e.g. "Bounty")', type: "string" },
-        { name: "crewTools", title: 'Tech list heading (e.g. "Tools & Technologies")', type: "string" },
+        { name: "crewTools", title: 'Tech list heading (e.g. "Crew & Tools")', type: "string" },
         { name: "live", title: 'Live-demo button (e.g. "Live demo")', type: "string" },
         { name: "code", title: 'Source-code button (e.g. "Source code")', type: "string" },
       ],

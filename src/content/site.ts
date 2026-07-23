@@ -434,7 +434,7 @@ export const uiCopy: UiCopy = {
     wanted: "Wanted",
     featured: "Featured",
     bounty: "Bounty",
-    crewTools: "Tools & Technologies",
+    crewTools: "Crew & Tools",
     live: "Live demo",
     code: "Source code",
   },
