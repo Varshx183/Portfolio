@@ -431,7 +431,6 @@ export const uiCopy: UiCopy = {
   projects: {
     all: "All",
     empty: "No bounties in these waters yet. Try another crew.",
-    wanted: "Wanted",
     featured: "Featured",
     bounty: "Bounty",
     crewTools: "Crew & Tools",

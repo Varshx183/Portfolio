@@ -128,7 +128,6 @@ export type ContactCopy = {
 export type ProjectLabels = {
   all: string;
   empty: string;
-  wanted: string;
   featured: string;
   bounty: string;
   crewTools: string;

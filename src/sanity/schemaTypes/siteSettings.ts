@@ -349,7 +349,6 @@ export const siteSettings = defineType({
       fields: [
         { name: "all", title: '"All" filter label', type: "string" },
         { name: "empty", title: "No-results message", type: "string" },
-        { name: "wanted", title: 'Card banner (e.g. "Wanted")', type: "string" },
         { name: "featured", title: 'Featured badge (e.g. "Featured")', type: "string" },
         { name: "bounty", title: 'Bounty label (e.g. "Bounty")', type: "string" },
         { name: "crewTools", title: 'Tech list heading (e.g. "Crew & Tools")', type: "string" },
