@@ -59,12 +59,13 @@ export function Experience({
                     : "sm:ml-auto sm:pl-10"
                 }`}
               >
-                {/* Node marker */}
+                {/* Node marker — centered on the timeline: mobile sits on the
+                    left rail; on sm+ it straddles the middle line exactly. */}
                 <span
-                  className={`absolute top-1.5 grid h-8 w-8 place-items-center rounded-full border-2 border-gold bg-surface text-gold shadow-gold left-0 sm:left-auto ${
+                  className={`absolute top-1.5 grid h-8 w-8 place-items-center rounded-full border-2 border-gold bg-surface text-gold shadow-gold ${
                     sideLeft
-                      ? "sm:-right-4 sm:translate-x-1/2"
-                      : "sm:-left-4 sm:-translate-x-1/2"
+                      ? "left-0 sm:left-auto sm:right-0 sm:translate-x-1/2"
+                      : "left-0 sm:-translate-x-1/2"
                   }`}
                   aria-hidden
                 >
