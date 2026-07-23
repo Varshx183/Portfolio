@@ -239,8 +239,8 @@ html.lenis body {
   transition: height 0.18s ease, width 0.18s ease, opacity 0.25s ease;
 }
 .cursor-fruit.is-hover {
-  height: 58px;
-  width: 58px;
+  height: 28px;
+  width: 28px;
 }
 .cursor-fruit img {
   height: 100%;
