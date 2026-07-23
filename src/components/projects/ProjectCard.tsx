@@ -36,11 +36,8 @@ export function ProjectCard({
       role="button"
       aria-label={`View details for ${project.title}`}
     >
-      {/* Poster header */}
-      <div className="flex items-center justify-between border-b-2 border-dashed border-gold/40 bg-surface-2 px-4 py-2">
-        <span className="font-pirate text-sm uppercase tracking-[0.25em] text-gold">
-          {labels.wanted}
-        </span>
+      {/* Poster header (dashed trim + optional Featured badge) */}
+      <div className="flex min-h-[2.25rem] items-center justify-end border-b-2 border-dashed border-gold/40 bg-surface-2 px-4 py-2">
         {project.featured && (
           <span className="rounded-full bg-crimson/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-crimson">
             {labels.featured}
