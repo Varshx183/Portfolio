@@ -205,3 +205,62 @@ html.lenis body {
      change, never on the URL-bar's height-only resize (see SmoothScroll). */
   height: var(--app-height, 100lvh);
 }
+
+/* ==========================================================================
+   Custom "devil fruit" cursor (see CustomCursor.tsx). Active only on precise
+   pointers; the native cursor is hidden while it's on.
+   ========================================================================== */
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
+
+.cursor-dot,
+.cursor-fruit {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cursor-dot {
+  height: 6px;
+  width: 6px;
+  border-radius: 9999px;
+  background: rgb(var(--gold));
+  box-shadow: 0 0 10px rgb(var(--gold) / 0.9);
+}
+
+.cursor-fruit {
+  height: 40px;
+  width: 40px;
+  transition: height 0.18s ease, width 0.18s ease, opacity 0.25s ease;
+}
+.cursor-fruit.is-hover {
+  height: 58px;
+  width: 58px;
+}
+.cursor-fruit svg {
+  height: 100%;
+  width: 100%;
+  animation: fruit-spin 9s linear infinite;
+  filter: drop-shadow(0 0 6px rgb(var(--gold) / 0.55));
+}
+
+.has-custom-cursor.cursor-hidden .cursor-dot,
+.has-custom-cursor.cursor-hidden .cursor-fruit {
+  opacity: 0;
+}
+
+@keyframes fruit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cursor-fruit svg {
+    animation: none;
+  }
+}

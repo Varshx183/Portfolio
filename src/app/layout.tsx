@@ -7,6 +7,7 @@ import { StructuredData } from "@/components/seo/StructuredData";
 import { JollyRogerBackdrop } from "@/components/ui/JollyRogerBackdrop";
 import { PageLoader } from "@/components/ui/PageLoader";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import { getContent } from "@/lib/content";
 
 /* ---- Fonts (self-hosted via next/font, zero layout shift) ---------------- */
@@ -103,6 +104,7 @@ export default async function RootLayout({
     >
       <body>
         <StructuredData />
+        <CustomCursor />
         <PageLoader name={site.name} tagline={copy.loaderText} />
         {/* Skip link for keyboard & screen-reader users (a11y). */}
         <a

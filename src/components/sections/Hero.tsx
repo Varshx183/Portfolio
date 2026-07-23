@@ -160,17 +160,6 @@ export function Hero({
         </motion.div>
       </div>
 
-      {/* Scroll cue */}
-      <motion.a
-        href="#about"
-        aria-label="Scroll to About"
-        className="absolute bottom-28 left-1/2 hidden -translate-x-1/2 text-ink-muted sm:block"
-        animate={reduce ? undefined : { y: [0, 8, 0] }}
-        transition={{ duration: 1.8, repeat: Infinity }}
-      >
-        <FiArrowDown size={22} />
-      </motion.a>
-
       <Waves />
     </section>
   );
