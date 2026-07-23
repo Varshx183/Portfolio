@@ -95,8 +95,12 @@ export function ProjectModal({
               </button>
             </div>
 
-            {/* Scrollable body */}
-            <div className="flex-1 overflow-y-auto p-6 sm:p-8">
+            {/* Scrollable body. `data-lenis-prevent` lets the wheel scroll this
+                panel natively instead of Lenis capturing it for the page. */}
+            <div
+              className="flex-1 overflow-y-auto overscroll-contain p-6 sm:p-8"
+              data-lenis-prevent
+            >
               <div className="mb-3 flex flex-wrap items-center gap-3">
                 <span className="pill text-gold">{project.category}</span>
                 {project.bounty && (
