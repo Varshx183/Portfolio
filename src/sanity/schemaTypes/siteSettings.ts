@@ -19,7 +19,6 @@ export const siteSettings = defineType({
     { name: "headings", title: "🏷️ Section Titles" },
     { name: "menu", title: "🧭 Menu Labels" },
     { name: "footer", title: "⚓ Footer" },
-    { name: "labels", title: "🔖 Buttons & Small Labels" },
   ],
   fields: [
     /* ----------------------------- Home Page ----------------------------- */
@@ -306,54 +305,6 @@ export const siteSettings = defineType({
           type: "string",
         },
         { name: "credit", title: "Credit line (bottom right)", type: "string" },
-      ],
-    }),
-
-    /* ------------------------ Buttons & Small Labels --------------------- */
-    defineField({
-      name: "educationHeading",
-      title: 'Education heading (in Experience, e.g. "Navigation School")',
-      type: "string",
-      group: "labels",
-    }),
-    defineField({
-      name: "certView",
-      title: 'Certification link text (e.g. "View credential")',
-      type: "string",
-      group: "labels",
-    }),
-    defineField({
-      name: "navResume",
-      title: "Header résumé button (desktop)",
-      type: "string",
-      group: "labels",
-    }),
-    defineField({
-      name: "navResumeMobile",
-      title: "Header résumé button (mobile menu)",
-      type: "string",
-      group: "labels",
-    }),
-    defineField({
-      name: "loaderText",
-      title: 'Loading screen text (e.g. "Charting the course…")',
-      type: "string",
-      group: "labels",
-    }),
-    defineField({
-      name: "projectLabels",
-      title: "Projects section labels",
-      type: "object",
-      group: "labels",
-      options: { collapsible: true, collapsed: true },
-      fields: [
-        { name: "all", title: '"All" filter label', type: "string" },
-        { name: "empty", title: "No-results message", type: "string" },
-        { name: "featured", title: 'Featured badge (e.g. "Featured")', type: "string" },
-        { name: "bounty", title: 'Bounty label (e.g. "Bounty")', type: "string" },
-        { name: "crewTools", title: 'Tech list heading (e.g. "Crew & Tools")', type: "string" },
-        { name: "live", title: 'Live-demo button (e.g. "Live demo")', type: "string" },
-        { name: "code", title: 'Source-code button (e.g. "Source code")', type: "string" },
       ],
     }),
   ],
