@@ -79,13 +79,9 @@ export function Experience({
                     <p className="text-sm font-medium text-gold">
                       {item.company} · {item.location}
                     </p>
-                    <ul className="mt-3 space-y-2 text-left text-sm text-ink-muted">
+                    <ul className="mt-3 list-disc space-y-2 pl-5 text-left text-sm leading-relaxed text-ink-muted marker:text-gold sm:text-justify">
                       {item.bullets.map((b, bi) => (
-                        <li key={bi} className="relative pl-4 leading-relaxed">
-                          <span
-                            className="absolute left-0 top-[0.5em] h-1.5 w-1.5 rounded-full bg-gold/60"
-                            aria-hidden
-                          />
+                        <li key={bi} className="pl-1">
                           {b}
                         </li>
                       ))}
