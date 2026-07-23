@@ -38,8 +38,8 @@ export const project = defineType({
     }),
     defineField({
       name: "tags",
-      title: "Tools & technologies",
-      description: "Type each tool or technology and press Enter to add it.",
+      title: "Crew & Tools",
+      description: "Tools & technologies used. Type each one and press Enter to add it.",
       type: "array",
       of: [defineArrayMember({ type: "string" })],
       options: { layout: "tags" },
