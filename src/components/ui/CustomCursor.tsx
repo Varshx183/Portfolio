@@ -83,46 +83,8 @@ export function CustomCursor() {
     <>
       <div ref={dotRef} className="cursor-dot" aria-hidden />
       <div ref={fruitRef} className="cursor-fruit" aria-hidden>
-        <svg viewBox="0 0 40 40" className="text-gold" fill="none">
-          <defs>
-            <radialGradient id="devil-fruit" cx="38%" cy="32%" r="72%">
-              <stop offset="0%" stopColor="#8a5cd8" />
-              <stop offset="100%" stopColor="#37205f" />
-            </radialGradient>
-          </defs>
-          {/* stem + leaf */}
-          <path
-            d="M20 8c0-3 1.4-4.6 4-5.2"
-            stroke="#7c5a33"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-          />
-          <path d="M23 3c2.6-1.5 5-.7 6.5 1.1-1.8 2.1-4.5 2-6.5.3z" fill="#3fa35c" />
-          {/* body */}
-          <circle
-            cx="20"
-            cy="24"
-            r="13"
-            fill="url(#devil-fruit)"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          {/* signature swirls */}
-          <path
-            d="M12 22c2.4-3.2 5-3.2 7.4 0s5 3.2 7.4 0"
-            stroke="currentColor"
-            strokeWidth="1.4"
-            strokeLinecap="round"
-            opacity="0.95"
-          />
-          <path
-            d="M11 28c2.7-3.4 5.6-3.4 8.3 0s5.6 3.4 8.3 0"
-            stroke="currentColor"
-            strokeWidth="1.2"
-            strokeLinecap="round"
-            opacity="0.7"
-          />
-        </svg>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/cursor-fruit.png" alt="" draggable={false} />
       </div>
     </>
   );

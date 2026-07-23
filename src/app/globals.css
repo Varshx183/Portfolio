@@ -242,9 +242,10 @@ html.lenis body {
   height: 58px;
   width: 58px;
 }
-.cursor-fruit svg {
+.cursor-fruit img {
   height: 100%;
   width: 100%;
+  object-fit: contain;
   animation: fruit-spin 9s linear infinite;
   filter: drop-shadow(0 0 6px rgb(var(--gold) / 0.55));
 }
@@ -260,7 +261,7 @@ html.lenis body {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cursor-fruit svg {
+  .cursor-fruit img {
     animation: none;
   }
 }
