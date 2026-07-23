@@ -79,18 +79,12 @@ export function Experience({
                     <p className="text-sm font-medium text-gold">
                       {item.company} · {item.location}
                     </p>
-                    <ul className="mt-3 space-y-2 text-left text-sm text-ink-muted">
+                    <ul className="mt-3 space-y-2 text-center text-sm leading-relaxed text-ink-muted">
                       {item.bullets.map((b, bi) => (
-                        <li key={bi} className="relative pl-4 leading-relaxed">
-                          <span
-                            className="absolute left-0 top-[0.5em] h-1.5 w-1.5 rounded-full bg-gold/60"
-                            aria-hidden
-                          />
-                          {b}
-                        </li>
+                        <li key={bi}>{b}</li>
                       ))}
                     </ul>
-                    <div className="mt-3 flex flex-wrap gap-1.5">
+                    <div className="mt-3 flex flex-wrap justify-center gap-1.5">
                       {item.tags.map((t) => (
                         <span
                           key={t}
