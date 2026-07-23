@@ -111,7 +111,7 @@ export function ProjectModal({
               >
                 {project.title}
               </h3>
-              <p className="mt-4 leading-relaxed text-ink-soft">
+              <p className="mt-4 leading-relaxed text-ink-soft md:text-justify">
                 {project.description}
               </p>
 

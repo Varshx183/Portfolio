@@ -98,7 +98,9 @@ export function ProjectCard({
           </h3>
           <span className="pill shrink-0 text-[10px]">{project.category}</span>
         </div>
-        <p className="mb-4 flex-1 text-sm text-ink-muted">{project.summary}</p>
+        <p className="mb-4 flex-1 text-sm text-ink-muted md:text-justify">
+          {project.summary}
+        </p>
 
         {/* Bounty — optional One Piece flourish; hidden when not set. */}
         {project.bounty && (

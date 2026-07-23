@@ -74,7 +74,7 @@ export function About({
           <div>
             {site.about.map((para, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <p className="mb-4 text-base leading-relaxed text-ink-soft sm:text-lg">
+                <p className="mb-4 text-base leading-relaxed text-ink-soft sm:text-lg md:text-justify">
                   {para}
                 </p>
               </Reveal>

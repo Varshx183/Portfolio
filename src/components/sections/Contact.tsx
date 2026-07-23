@@ -98,7 +98,7 @@ export function Contact({
               <h3 className="font-display text-xl font-semibold text-ink">
                 {copy.cardHeading}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted md:text-justify">
                 {copy.cardText}
               </p>
 
