@@ -17,8 +17,9 @@ export const project = defineType({
     defineField({
       name: "category",
       title: "Category",
+      description:
+        'Type any category to group and filter this project by — e.g. "Web", "Security", "Cloud", "Tooling", "Research", "Open Source". Reuse the exact same wording across projects so they filter together.',
       type: "string",
-      options: { list: ["Web", "Mobile", "Open Source", "Design"], layout: "radio" },
       validation: (r) => r.required(),
     }),
     defineField({

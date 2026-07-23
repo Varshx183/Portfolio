@@ -48,7 +48,9 @@ export type EducationItem = {
   detail: string;
 };
 
-export type ProjectCategory = "Web" | "Mobile" | "Open Source" | "Design";
+/** Free-text category (managed in the CMS); the filter bar derives its chips
+ *  from whatever categories the projects actually use. */
+export type ProjectCategory = string;
 
 export type Project = {
   title: string;
