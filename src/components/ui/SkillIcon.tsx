@@ -52,7 +52,7 @@ import { FiCode } from "react-icons/fi";
  * icon picker reads them from the exported `iconKeys`. Unknown keys fall back to
  * a generic code glyph so content edits can never crash the UI.
  */
-const registry: Record<string, IconType> = {
+export const iconRegistry: Record<string, IconType> = {
   // languages
   typescript: SiTypescript, javascript: SiJavascript, python: SiPython,
   bash: SiGnubash, go: SiGo, rust: SiRust, cpp: SiCplusplus, c: SiC, php: SiPhp,
@@ -118,12 +118,12 @@ const registry: Record<string, IconType> = {
 };
 
 /** All valid icon keys (used by the CMS icon picker). */
-export const iconKeys = Object.keys(registry);
+export const iconKeys = Object.keys(iconRegistry);
 
 export function SkillIcon({
   name,
   ...props
 }: { name: string } & React.ComponentProps<IconType>) {
-  const Icon = registry[name] ?? FiCode;
+  const Icon = iconRegistry[name] ?? FiCode;
   return <Icon {...props} />;
 }

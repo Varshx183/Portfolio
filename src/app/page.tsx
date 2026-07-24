@@ -10,6 +10,7 @@ import { Projects } from "@/components/sections/Projects";
 import { Certifications } from "@/components/sections/Certifications";
 import { Contact } from "@/components/sections/Contact";
 import { getContent } from "@/lib/content";
+import { SkillIcon } from "@/components/ui/SkillIcon";
 
 // Render on every request so published CMS edits appear on the next refresh,
 // with no redeploy and no waiting. (Time-based ISR was serving a stale cached
@@ -31,6 +32,23 @@ export default async function Home() {
     copy,
   } = await getContent();
 
+  // Render each skill's icon here (a server component), so the react-icons
+  // library stays out of the browser bundle; the client Skills section just
+  // places the pre-rendered node.
+  const skillGroupsWithIcons = skillGroups.map((group) => ({
+    ...group,
+    skills: group.skills.map((skill) => ({
+      ...skill,
+      iconNode: (
+        <SkillIcon
+          name={skill.icon}
+          className="text-lg text-ink-soft"
+          aria-hidden
+        />
+      ),
+    })),
+  }));
+
   return (
     <>
       <ScrollProgress />
@@ -49,7 +67,7 @@ export default async function Home() {
           posterStatus={copy.posterStatus}
           posterPlaceholder={copy.posterPlaceholder}
         />
-        <Skills skillGroups={skillGroups} heading={sections.skills} />
+        <Skills skillGroups={skillGroupsWithIcons} heading={sections.skills} />
         <Experience
           experience={experience}
           education={education}

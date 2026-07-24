@@ -1,16 +1,22 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import type { SkillGroup, SectionCopy } from "@/content/types";
+import type { SkillGroup, Skill, SectionCopy } from "@/content/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
-import { SkillIcon } from "@/components/ui/SkillIcon";
+
+/** Skills with their icon pre-rendered server-side (see page.tsx). */
+type SkillWithIcon = Skill & { iconNode: ReactNode };
+type SkillGroupWithIcons = Omit<SkillGroup, "skills"> & {
+  skills: SkillWithIcon[];
+};
 
 export function Skills({
   skillGroups,
   heading,
 }: {
-  skillGroups: SkillGroup[];
+  skillGroups: SkillGroupWithIcons[];
   heading: SectionCopy;
 }) {
   const reduce = useReducedMotion();
@@ -49,11 +55,7 @@ export function Skills({
                   <li key={skill.name}>
                     <div className="mb-1.5 flex items-center justify-between">
                       <span className="flex items-center gap-2.5 text-sm font-medium text-ink">
-                        <SkillIcon
-                          name={skill.icon}
-                          className="text-lg text-ink-soft"
-                          aria-hidden
-                        />
+                        {skill.iconNode}
                         {skill.name}
                       </span>
                       <span className="text-xs tabular-nums text-ink-muted">
