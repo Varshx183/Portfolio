@@ -1,15 +1,33 @@
 import type { IconType } from "react-icons";
 import {
-  // languages / dev
-  SiReact, SiNextdotjs, SiTypescript, SiJavascript, SiTailwindcss, SiNodedotjs,
-  SiPython, SiGnubash, SiGraphql, SiPostgresql, SiMysql, SiMongodb, SiRedis,
-  SiGit, SiGithub, SiGitlab, SiFigma, SiPostman, SiNginx,
+  // languages
+  SiTypescript, SiJavascript, SiPython, SiGnubash, SiGo, SiRust, SiCplusplus,
+  SiC, SiPhp, SiRuby, SiKotlin, SiSwift, SiScala, SiR, SiSolidity, SiPerl,
+  SiLua, SiDart, SiElixir, SiHaskell, SiClojure, SiGraphql,
+  // frameworks / runtimes
+  SiReact, SiNextdotjs, SiVuedotjs, SiAngular, SiSvelte, SiAstro, SiVite,
+  SiTailwindcss, SiNodedotjs, SiExpress, SiNestjs, SiDeno, SiBun, SiDjango,
+  SiFlask, SiFastapi, SiSpring, SiDotnet, SiLaravel, SiRubyonrails,
+  // data / ml
+  SiNumpy, SiPandas, SiTensorflow, SiPytorch, SiJupyter,
+  // databases / messaging
+  SiPostgresql, SiMysql, SiMariadb, SiSqlite, SiMongodb, SiRedis,
+  SiApachecassandra, SiInfluxdb, SiSupabase, SiFirebase, SiRabbitmq,
+  SiApachekafka,
   // cloud / infra / devops
-  SiGooglecloud, SiCloudflare, SiDocker, SiKubernetes, SiTerraform, SiAnsible,
-  SiVagrant, SiProxmox, SiVirtualbox, SiVmware, SiJenkins, SiJira, SiGrafana,
-  SiPrometheus, SiVault, SiHashicorp,
+  SiGooglecloud, SiCloudflare, SiVercel, SiNetlify, SiDigitalocean, SiOpenstack,
+  SiDocker, SiPodman, SiKubernetes, SiHelm, SiIstio, SiRancher, SiTerraform,
+  SiAnsible, SiVagrant, SiPacker, SiConsul, SiNomad, SiVault, SiHashicorp,
+  SiProxmox, SiVirtualbox, SiVmware, SiQemu, SiJenkins, SiGithubactions,
+  SiCircleci, SiArgo, SiJira, SiGrafana, SiPrometheus,
+  // tools / editors
+  SiGit, SiGithub, SiGitlab, SiBitbucket, SiVim, SiNeovim, SiIntellijidea,
+  SiPycharm, SiPostman, SiInsomnia, SiSwagger, SiNginx, SiFigma, SiNotion,
+  SiDiscord, SiTrello, SiConfluence, SiObsidian,
   // operating systems
   SiLinux, SiKalilinux, SiParrotsecurity, SiUbuntu, SiDebian, SiRedhat,
+  SiArchlinux, SiFedora, SiCentos, SiAlpinelinux, SiOpensuse, SiApple,
+  SiAndroid, SiRaspberrypi,
   // security tools
   SiWireshark, SiMetasploit, SiBurpsuite, SiPortswigger, SiOwasp, SiSnort,
   SiSplunk, SiElastic, SiElasticsearch, SiElasticstack, SiKibana, SiLogstash,
@@ -30,27 +48,52 @@ import { FiCode } from "react-icons/fi";
 /**
  * Maps a skill's string `icon` key (stored in the CMS / fallback content) to a
  * brand or concept icon. Real brand logos where they exist; generic security
- * glyphs (shield, bug, network…) for tools without an official icon. Add keys
- * here AND in skillIconKeys.ts. Unknown keys fall back to a generic code glyph
- * so content edits can never crash the UI.
+ * glyphs for tools without an official icon. Add keys to `registry`; the CMS
+ * icon picker reads them from the exported `iconKeys`. Unknown keys fall back to
+ * a generic code glyph so content edits can never crash the UI.
  */
 const registry: Record<string, IconType> = {
-  // languages / dev
-  react: SiReact, nextjs: SiNextdotjs, typescript: SiTypescript,
-  javascript: SiJavascript, tailwind: SiTailwindcss, nodejs: SiNodedotjs,
-  python: SiPython, bash: SiGnubash, graphql: SiGraphql, postgresql: SiPostgresql,
-  mysql: SiMysql, mongodb: SiMongodb, redis: SiRedis, git: SiGit,
-  github: SiGithub, gitlab: SiGitlab, figma: SiFigma, postman: SiPostman,
-  nginx: SiNginx,
+  // languages
+  typescript: SiTypescript, javascript: SiJavascript, python: SiPython,
+  bash: SiGnubash, go: SiGo, rust: SiRust, cpp: SiCplusplus, c: SiC, php: SiPhp,
+  ruby: SiRuby, kotlin: SiKotlin, swift: SiSwift, scala: SiScala, r: SiR,
+  solidity: SiSolidity, perl: SiPerl, lua: SiLua, dart: SiDart, elixir: SiElixir,
+  haskell: SiHaskell, clojure: SiClojure, graphql: SiGraphql,
+  // frameworks / runtimes
+  react: SiReact, nextjs: SiNextdotjs, vue: SiVuedotjs, angular: SiAngular,
+  svelte: SiSvelte, astro: SiAstro, vite: SiVite, tailwind: SiTailwindcss,
+  nodejs: SiNodedotjs, express: SiExpress, nestjs: SiNestjs, deno: SiDeno,
+  bun: SiBun, django: SiDjango, flask: SiFlask, fastapi: SiFastapi,
+  spring: SiSpring, dotnet: SiDotnet, laravel: SiLaravel, rails: SiRubyonrails,
+  // data / ml
+  numpy: SiNumpy, pandas: SiPandas, tensorflow: SiTensorflow, pytorch: SiPytorch,
+  jupyter: SiJupyter,
+  // databases / messaging
+  postgresql: SiPostgresql, mysql: SiMysql, mariadb: SiMariadb, sqlite: SiSqlite,
+  mongodb: SiMongodb, redis: SiRedis, cassandra: SiApachecassandra,
+  influxdb: SiInfluxdb, supabase: SiSupabase, firebase: SiFirebase,
+  rabbitmq: SiRabbitmq, kafka: SiApachekafka,
   // cloud / infra / devops
-  aws: FaAws, gcp: SiGooglecloud, cloudflare: SiCloudflare, docker: SiDocker,
-  kubernetes: SiKubernetes, terraform: SiTerraform, ansible: SiAnsible,
-  vagrant: SiVagrant, proxmox: SiProxmox, virtualbox: SiVirtualbox,
-  vmware: SiVmware, jenkins: SiJenkins, jira: SiJira, grafana: SiGrafana,
-  prometheus: SiPrometheus, vault: SiVault, hashicorp: SiHashicorp,
+  aws: FaAws, gcp: SiGooglecloud, cloudflare: SiCloudflare, vercel: SiVercel,
+  netlify: SiNetlify, digitalocean: SiDigitalocean, openstack: SiOpenstack,
+  docker: SiDocker, podman: SiPodman, kubernetes: SiKubernetes, helm: SiHelm,
+  istio: SiIstio, rancher: SiRancher, terraform: SiTerraform, ansible: SiAnsible,
+  vagrant: SiVagrant, packer: SiPacker, consul: SiConsul, nomad: SiNomad,
+  vault: SiVault, hashicorp: SiHashicorp, proxmox: SiProxmox,
+  virtualbox: SiVirtualbox, vmware: SiVmware, qemu: SiQemu, jenkins: SiJenkins,
+  githubactions: SiGithubactions, circleci: SiCircleci, argocd: SiArgo,
+  jira: SiJira, grafana: SiGrafana, prometheus: SiPrometheus,
+  // tools / editors
+  git: SiGit, github: SiGithub, gitlab: SiGitlab, bitbucket: SiBitbucket,
+  vim: SiVim, neovim: SiNeovim, intellij: SiIntellijidea, pycharm: SiPycharm,
+  postman: SiPostman, insomnia: SiInsomnia, swagger: SiSwagger, nginx: SiNginx,
+  figma: SiFigma, notion: SiNotion, discord: SiDiscord, trello: SiTrello,
+  confluence: SiConfluence, obsidian: SiObsidian,
   // operating systems
   linux: SiLinux, kali: SiKalilinux, parrot: SiParrotsecurity, ubuntu: SiUbuntu,
-  debian: SiDebian, redhat: SiRedhat, windows: FaWindows,
+  debian: SiDebian, redhat: SiRedhat, arch: SiArchlinux, fedora: SiFedora,
+  centos: SiCentos, alpine: SiAlpinelinux, opensuse: SiOpensuse, windows: FaWindows,
+  macos: SiApple, android: SiAndroid, raspberrypi: SiRaspberrypi,
   // security tools
   wireshark: SiWireshark, metasploit: SiMetasploit, burpsuite: SiBurpsuite,
   portswigger: SiPortswigger, owasp: SiOwasp, zap: SiOwasp, snort: SiSnort,
@@ -73,6 +116,9 @@ const registry: Record<string, IconType> = {
   spider: FaSpider, robot: FaRobot, microchip: FaMicrochip, wifi: FaWifi,
   code: FaCode,
 };
+
+/** All valid icon keys (used by the CMS icon picker). */
+export const iconKeys = Object.keys(registry);
 
 export function SkillIcon({
   name,

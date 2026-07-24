@@ -1,5 +1,5 @@
 import { defineType, defineField, defineArrayMember } from "sanity";
-import { skillIconKeys } from "../../content/skillIconKeys";
+import { IconPicker } from "../components/IconPicker";
 
 export const skillGroup = defineType({
   name: "skillGroup",
@@ -26,8 +26,9 @@ export const skillGroup = defineType({
             {
               name: "icon",
               title: "Icon",
+              description: "Search and click an icon below.",
               type: "string",
-              options: { list: [...skillIconKeys] },
+              components: { input: IconPicker },
               validation: (r) => r.required(),
             },
             {

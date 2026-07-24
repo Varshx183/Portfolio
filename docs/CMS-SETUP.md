@@ -89,10 +89,10 @@ available at `https://yourdomain.com/studio`.
 - **Fallback:** if a content type has no documents yet, that section falls back
   to the local placeholder content, so the site is never empty while you fill
   it in.
-- **Skill icons:** the icon field is a dropdown of supported keys (react,
-  nextjs, typescript, …). To add a new one, add it to
-  [`SkillIcon.tsx`](../src/components/ui/SkillIcon.tsx) and
-  [`skillIconKeys.ts`](../src/content/skillIconKeys.ts).
+- **Skill icons:** the icon field is a searchable picker — type to filter and
+  click an icon. To add a new one, add a key to the `registry` in
+  [`SkillIcon.tsx`](../src/components/ui/SkillIcon.tsx); the picker lists them
+  automatically.
 - **Images:** uploaded images are served from Sanity's CDN (already whitelisted
   in `next.config.mjs`) and optimized by `next/image`.
 - **Prefer code?** You can ignore Sanity entirely and just edit
