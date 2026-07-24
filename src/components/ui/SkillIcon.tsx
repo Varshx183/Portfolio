@@ -42,6 +42,10 @@ import {
   FaBug, FaViruses, FaSkullCrossbones, FaNetworkWired, FaFireFlameCurved,
   FaTerminal, FaServer, FaDatabase, FaCloud, FaMagnifyingGlass, FaEye,
   FaSatelliteDish, FaVideo, FaSpider, FaRobot, FaMicrochip, FaWifi, FaCode,
+  // frameworks / compliance (concept glyphs — no official logos exist)
+  FaClipboardCheck, FaListCheck, FaCertificate, FaSitemap, FaTableCells,
+  FaLandmark, FaFileShield, FaGavel, FaScaleBalanced, FaFileCircleCheck,
+  FaBookOpen,
 } from "react-icons/fa6";
 import { FiCode } from "react-icons/fi";
 
@@ -107,6 +111,13 @@ export const iconRegistry: Record<string, IconType> = {
   // learning platforms
   hackthebox: SiHackthebox, tryhackme: SiTryhackme, hackerone: SiHackerone,
   bugcrowd: SiBugcrowd,
+  // frameworks / compliance / governance (no official logos — pick by meaning:
+  // NIST/CIS → framework, ISO 27001 → standard, MITRE ATT&CK → matrix,
+  // PCI DSS/SOC 2/GDPR/HIPAA → compliance/regulation)
+  framework: FaSitemap, compliance: FaClipboardCheck, checklist: FaListCheck,
+  standard: FaCertificate, matrix: FaTableCells, governance: FaLandmark,
+  policy: FaFileShield, regulation: FaGavel, scale: FaScaleBalanced,
+  audit: FaFileCircleCheck, book: FaBookOpen,
   // generic security / infra concepts (for tools without an official logo)
   shield: FaShieldHalved, lock: FaLock, usershield: FaUserShield, key: FaKey,
   fingerprint: FaFingerprint, bug: FaBug, virus: FaViruses,
