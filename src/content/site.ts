@@ -119,10 +119,10 @@ export const navLabels: NavLabels = {
   contact: "Contact",
 };
 
-/** Default hero button labels (editable in the CMS -> Site Settings -> Hero). */
+/** Hero button labels (hardcoded — no longer edited in the CMS). */
 export const heroCopy: HeroCopy = {
   ctaPrimary: "View my projects",
-  ctaSecondary: "My details",
+  ctaSecondary: "Contact",
 };
 
 /* -------------------------------------------------------------------------- */

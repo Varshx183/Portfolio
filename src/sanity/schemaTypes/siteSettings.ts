@@ -5,7 +5,7 @@ import { defineType, defineField, defineArrayMember } from "sanity";
  * (projects, skills, experience…) lives here.
  *
  * Fields are organised into TABS (groups) that follow the website top-to-bottom
- * — Home, About, Contact, Section Titles, Menu — so it's obvious what each field
+ * — Home, About, Contact, Section Titles — so it's obvious what each field
  * controls. Field `name`s are kept stable; only the human labels changed.
  */
 export const siteSettings = defineType({
@@ -17,8 +17,6 @@ export const siteSettings = defineType({
     { name: "about", title: "🧑 About Section" },
     { name: "contact", title: "✉️ Contact & Résumé" },
     { name: "headings", title: "🏷️ Section Titles" },
-    { name: "menu", title: "🧭 Menu Labels" },
-    { name: "footer", title: "⚓ Footer" },
   ],
   fields: [
     /* ----------------------------- Home Page ----------------------------- */
@@ -51,55 +49,6 @@ export const siteSettings = defineType({
       description: "The small location chip at the very top (e.g. your city).",
       type: "string",
       group: "home",
-    }),
-    defineField({
-      name: "hero",
-      title: "Home page buttons",
-      description: "The two buttons under your intro.",
-      type: "object",
-      group: "home",
-      options: { collapsible: true, collapsed: false },
-      fields: [
-        {
-          name: "ctaPrimary",
-          title: "First button text",
-          description: 'e.g. "View my projects" (scrolls to Projects).',
-          type: "string",
-        },
-        {
-          name: "ctaSecondary",
-          title: "Second button text",
-          description: 'e.g. "Contact me" (scrolls to Contact).',
-          type: "string",
-        },
-      ],
-    }),
-    defineField({
-      name: "askCopy",
-      title: "“Ask me anything” bar",
-      description:
-        "The search-style bar under your buttons. Each label below is a shortcut chip that jumps to that section.",
-      type: "object",
-      group: "home",
-      options: { collapsible: true, collapsed: true },
-      fields: [
-        { name: "placeholder", title: "Placeholder text", type: "string" },
-        {
-          name: "notFound",
-          title: "Message when nothing matches",
-          type: "string",
-        },
-        { name: "projects", title: "Chip: goes to Projects", type: "string" },
-        { name: "skills", title: "Chip: goes to Skills", type: "string" },
-        { name: "experience", title: "Chip: goes to Experience", type: "string" },
-        {
-          name: "certifications",
-          title: "Chip: goes to Certifications",
-          type: "string",
-        },
-        { name: "resume", title: "Chip: opens your résumé", type: "string" },
-        { name: "contact", title: "Chip: goes to Contact", type: "string" },
-      ],
     }),
     defineField({
       name: "stats",
@@ -222,31 +171,6 @@ export const siteSettings = defineType({
       group: "contact",
       rows: 2,
     }),
-    defineField({
-      name: "contactCopy",
-      title: "Contact section text",
-      description: "The wording of the contact card, résumé card, and form.",
-      type: "object",
-      group: "contact",
-      options: { collapsible: true, collapsed: true },
-      fields: [
-        { name: "cardHeading", title: "Info card heading", type: "string" },
-        { name: "cardText", title: "Info card text", type: "text", rows: 3 },
-        { name: "resumeTitle", title: "Résumé card title", type: "string" },
-        { name: "resumeText", title: "Résumé card subtitle", type: "string" },
-        { name: "resumeButton", title: "Résumé button text", type: "string" },
-        { name: "nameLabel", title: "Form: Name label", type: "string" },
-        { name: "emailLabel", title: "Form: Email label", type: "string" },
-        { name: "messageLabel", title: "Form: Message label", type: "string" },
-        { name: "namePlaceholder", title: "Form: Name placeholder", type: "string" },
-        { name: "emailPlaceholder", title: "Form: Email placeholder", type: "string" },
-        { name: "messagePlaceholder", title: "Form: Message placeholder", type: "string" },
-        { name: "submitLabel", title: "Form: Send button", type: "string" },
-        { name: "sendingLabel", title: "Form: Sending… text", type: "string" },
-        { name: "successMessage", title: "Form: Success message", type: "string" },
-        { name: "errorMessage", title: "Form: Error message", type: "string" },
-      ],
-    }),
 
     /* --------------------------- Section Titles -------------------------- */
     defineField({
@@ -264,47 +188,6 @@ export const siteSettings = defineType({
         sectionHeadingField("projects", "Projects section"),
         sectionHeadingField("certifications", "Certifications section"),
         sectionHeadingField("contact", "Contact section"),
-      ],
-    }),
-
-    /* ---------------------------- Menu Labels ---------------------------- */
-    defineField({
-      name: "nav",
-      title: "Navigation menu labels",
-      description:
-        "Rename the links in the top menu. The links themselves stay the same.",
-      type: "object",
-      group: "menu",
-      options: { collapsible: true, collapsed: false },
-      fields: [
-        { name: "home", title: "Home link", type: "string" },
-        { name: "about", title: "About link", type: "string" },
-        { name: "skills", title: "Skills link", type: "string" },
-        { name: "experience", title: "Experience link", type: "string" },
-        { name: "projects", title: "Projects link", type: "string" },
-        { name: "certifications", title: "Certifications link", type: "string" },
-        { name: "contact", title: "Contact link", type: "string" },
-      ],
-    }),
-
-    /* ------------------------------ Footer ------------------------------- */
-    defineField({
-      name: "footerCopy",
-      title: "Footer text",
-      type: "object",
-      group: "footer",
-      options: { collapsible: true, collapsed: false },
-      fields: [
-        { name: "navHeading", title: 'Links column heading (e.g. "Navigate")', type: "string" },
-        { name: "contactHeading", title: 'Contact column heading (e.g. "Set Sail")', type: "string" },
-        { name: "resumeLabel", title: "Résumé download link text", type: "string" },
-        {
-          name: "copyright",
-          title: "Copyright tagline",
-          description: "Shown after “© year Your Name.” at the bottom.",
-          type: "string",
-        },
-        { name: "credit", title: "Credit line (bottom right)", type: "string" },
       ],
     }),
   ],

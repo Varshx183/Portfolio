@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { FiBriefcase, FiBookOpen } from "react-icons/fi";
+import { FiBriefcase, FiBookOpen, FiChevronDown } from "react-icons/fi";
 import type { ExperienceItem, EducationItem, SectionCopy } from "@/content/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -18,6 +19,8 @@ export function Experience({
   educationHeading?: string;
 }) {
   const reduce = useReducedMotion();
+  const [open, setOpen] = useState<Record<number, boolean>>({});
+  const COLLAPSED = 2; // bullets shown before "Show more"
 
   return (
     <section id="experience" className="relative py-24 sm:py-28">
@@ -50,6 +53,9 @@ export function Experience({
 
           {experience.map((item, i) => {
             const sideLeft = i % 2 === 0;
+            const isOpen = !!open[i];
+            const hasMore = item.bullets.length > COLLAPSED;
+            const shown = isOpen ? item.bullets : item.bullets.slice(0, COLLAPSED);
             return (
               <li
                 key={`${item.company}-${i}`}
@@ -71,7 +77,7 @@ export function Experience({
                 </span>
 
                 <Reveal direction={sideLeft ? "left" : "right"}>
-                  <article className="card p-5 transition-transform hover:-translate-y-1">
+                  <article className="card flex flex-col items-start p-5 transition-transform hover:-translate-y-1 sm:min-h-[15rem]">
                     <span className="pill mb-2 text-gold">{item.period}</span>
                     <h3 className="font-display text-lg font-semibold text-ink">
                       {item.role}
@@ -79,14 +85,33 @@ export function Experience({
                     <p className="text-sm font-medium text-gold">
                       {item.company} · {item.location}
                     </p>
-                    <ul className="mt-3 list-disc space-y-2 pl-5 text-left text-sm leading-relaxed text-ink-muted marker:text-gold sm:text-justify">
-                      {item.bullets.map((b, bi) => (
+                    <ul className="mt-3 w-full list-disc space-y-2 pl-5 text-left text-sm leading-relaxed text-ink-muted marker:text-gold sm:text-justify">
+                      {shown.map((b, bi) => (
                         <li key={bi} className="pl-1">
                           {b}
                         </li>
                       ))}
                     </ul>
-                    <div className="mt-3 flex flex-wrap gap-1.5">
+                    {hasMore && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setOpen((prev) => ({ ...prev, [i]: !prev[i] }))
+                        }
+                        aria-expanded={isOpen}
+                        className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-gold transition-colors hover:text-gold-soft"
+                      >
+                        {isOpen
+                          ? "Show less"
+                          : `Show ${item.bullets.length - COLLAPSED} more`}
+                        <FiChevronDown
+                          className={`transition-transform ${
+                            isOpen ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                    )}
+                    <div className="mt-auto flex w-full flex-wrap gap-1.5 pt-4">
                       {item.tags.map((t) => (
                         <span
                           key={t}
