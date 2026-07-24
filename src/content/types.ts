@@ -11,24 +11,10 @@ export type SocialKey =
   | "github"
   | "linkedin"
   | "twitter"
-  | "x"
   | "email"
-  | "website"
-  | "medium"
-  | "devto"
-  | "hashnode"
-  | "youtube"
-  | "instagram"
-  | "stackoverflow"
-  | "telegram"
-  | "discord"
-  | "mastodon"
   | "reddit"
-  | "facebook"
-  | "behance"
-  | "kaggle"
-  | "threads"
-  | "substack";
+  | "medium"
+  | "discord";
 
 export type Social = { key: SocialKey; label: string; href: string };
 
