@@ -255,6 +255,17 @@ html.lenis body {
   opacity: 0;
 }
 
+/* While selecting text, restore the native cursor (text caret) and hide the
+   custom one, so copying/selecting feels normal. */
+.has-custom-cursor.cursor-selecting,
+.has-custom-cursor.cursor-selecting * {
+  cursor: auto !important;
+}
+.has-custom-cursor.cursor-selecting .cursor-dot,
+.has-custom-cursor.cursor-selecting .cursor-fruit {
+  opacity: 0;
+}
+
 @keyframes fruit-spin {
   to {
     transform: rotate(360deg);

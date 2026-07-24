@@ -2,10 +2,9 @@
 
 import { useState, type FormEvent } from "react";
 import { FiSend, FiDownload, FiMail, FiMapPin, FiCheckCircle, FiAlertCircle } from "react-icons/fi";
-import type { SiteInfo, Social, SectionCopy, ContactCopy } from "@/content/types";
+import type { SiteInfo, SocialWithIcon, SectionCopy, ContactCopy } from "@/content/types";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
-import { SocialIcon } from "@/components/ui/SocialIcon";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -20,7 +19,7 @@ export function Contact({
   copy,
 }: {
   site: SiteInfo;
-  socials: Social[];
+  socials: SocialWithIcon[];
   heading: SectionCopy;
   copy: ContactCopy;
 }) {
@@ -129,7 +128,7 @@ export function Contact({
                     aria-label={s.label}
                     className="grid h-10 w-10 place-items-center rounded-full border border-border bg-surface-2 text-ink-soft transition-all hover:-translate-y-0.5 hover:border-gold hover:text-gold"
                   >
-                    <SocialIcon name={s.key} size={17} />
+                    {s.iconNode}
                   </a>
                 ))}
               </div>

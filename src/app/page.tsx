@@ -11,6 +11,7 @@ import { Certifications } from "@/components/sections/Certifications";
 import { Contact } from "@/components/sections/Contact";
 import { getContent } from "@/lib/content";
 import { SkillIcon } from "@/components/ui/SkillIcon";
+import { SocialIcon } from "@/components/ui/SocialIcon";
 
 // Render on every request so published CMS edits appear on the next refresh,
 // with no redeploy and no waiting. (Time-based ISR was serving a stale cached
@@ -49,6 +50,12 @@ export default async function Home() {
     })),
   }));
 
+  // Same idea for social icons — render here so react-icons stays server-side.
+  const socialsWithIcons = socials.map((s) => ({
+    ...s,
+    iconNode: <SocialIcon name={s.key} size={18} aria-hidden />,
+  }));
+
   return (
     <>
       <ScrollProgress />
@@ -59,7 +66,12 @@ export default async function Home() {
         resumeMobileLabel={copy.navResumeMobile}
       />
       <main id="main">
-        <Hero site={site} socials={socials} hero={hero} ask={copy.ask} />
+        <Hero
+          site={site}
+          socials={socialsWithIcons}
+          hero={hero}
+          ask={copy.ask}
+        />
         <About
           site={site}
           heading={sections.about}
@@ -86,12 +98,17 @@ export default async function Home() {
         />
         <Contact
           site={site}
-          socials={socials}
+          socials={socialsWithIcons}
           heading={sections.contact}
           copy={copy.contact}
         />
       </main>
-      <Footer site={site} socials={socials} nav={nav} copy={copy.footer} />
+      <Footer
+        site={site}
+        socials={socialsWithIcons}
+        nav={nav}
+        copy={copy.footer}
+      />
       <BackToTop />
     </>
   );

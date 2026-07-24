@@ -7,9 +7,34 @@
  * client-side registry maps to an icon component (see SkillIcon / SocialIcon).
  */
 
-export type SocialKey = "github" | "linkedin" | "twitter" | "email";
+export type SocialKey =
+  | "github"
+  | "linkedin"
+  | "twitter"
+  | "x"
+  | "email"
+  | "website"
+  | "medium"
+  | "devto"
+  | "hashnode"
+  | "youtube"
+  | "instagram"
+  | "stackoverflow"
+  | "telegram"
+  | "discord"
+  | "mastodon"
+  | "reddit"
+  | "facebook"
+  | "behance"
+  | "kaggle"
+  | "threads"
+  | "substack";
 
 export type Social = { key: SocialKey; label: string; href: string };
+
+/** A social link with its icon pre-rendered server-side (see page.tsx), so the
+ *  icon library stays out of the client bundle. */
+export type SocialWithIcon = Social & { iconNode: import("react").ReactNode };
 
 export type Stat = { label: string; value: string };
 

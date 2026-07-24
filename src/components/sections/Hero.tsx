@@ -2,8 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { FiArrowDown, FiMapPin } from "react-icons/fi";
-import type { SiteInfo, Social, HeroCopy, AskCopy } from "@/content/types";
-import { SocialIcon } from "@/components/ui/SocialIcon";
+import type { SiteInfo, SocialWithIcon, HeroCopy, AskCopy } from "@/content/types";
 import { Waves } from "@/components/ui/Waves";
 import { AskBar } from "@/components/ui/AskBar";
 import { Compass } from "@/components/ui/illustrations/Compass";
@@ -25,7 +24,7 @@ export function Hero({
   ask,
 }: {
   site: SiteInfo;
-  socials: Social[];
+  socials: SocialWithIcon[];
   hero: HeroCopy;
   ask: AskCopy;
 }) {
@@ -137,7 +136,7 @@ export function Hero({
                 aria-label={s.label}
                 className="grid h-11 w-11 place-items-center rounded-full border border-border bg-surface/70 text-ink-soft backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-gold hover:text-gold"
               >
-                <SocialIcon name={s.key} size={19} />
+                {s.iconNode}
               </a>
             ))}
           </motion.div>

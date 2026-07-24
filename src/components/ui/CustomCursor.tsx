@@ -48,6 +48,10 @@ export function CustomCursor() {
     };
     const onLeave = () => root.classList.add("cursor-hidden");
     const onEnter = () => root.classList.remove("cursor-hidden");
+    // While the user is selecting text, hand back the native cursor (so they
+    // get the text caret); restore the custom cursor once they release.
+    const onSelectStart = () => root.classList.add("cursor-selecting");
+    const onSelectEnd = () => root.classList.remove("cursor-selecting");
 
     const tick = () => {
       fx += (mx - fx) * 0.16;
@@ -66,6 +70,8 @@ export function CustomCursor() {
     window.addEventListener("pointerover", onOver, { passive: true });
     document.addEventListener("mouseleave", onLeave);
     document.addEventListener("mouseenter", onEnter);
+    document.addEventListener("selectstart", onSelectStart);
+    document.addEventListener("mouseup", onSelectEnd);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -73,7 +79,13 @@ export function CustomCursor() {
       window.removeEventListener("pointerover", onOver);
       document.removeEventListener("mouseleave", onLeave);
       document.removeEventListener("mouseenter", onEnter);
-      root.classList.remove("has-custom-cursor", "cursor-hidden");
+      document.removeEventListener("selectstart", onSelectStart);
+      document.removeEventListener("mouseup", onSelectEnd);
+      root.classList.remove(
+        "has-custom-cursor",
+        "cursor-hidden",
+        "cursor-selecting"
+      );
     };
   }, [pathname]);
 

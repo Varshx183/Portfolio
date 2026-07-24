@@ -1,6 +1,5 @@
 import { navLinks } from "@/content/site";
-import type { SiteInfo, Social, NavLabels, FooterCopy } from "@/content/types";
-import { SocialIcon } from "@/components/ui/SocialIcon";
+import type { SiteInfo, SocialWithIcon, NavLabels, FooterCopy } from "@/content/types";
 
 /** Site footer: brand blurb, quick nav, social links, and a rope divider. */
 export function Footer({
@@ -10,7 +9,7 @@ export function Footer({
   copy,
 }: {
   site: SiteInfo;
-  socials: Social[];
+  socials: SocialWithIcon[];
   nav: NavLabels;
   copy: FooterCopy;
 }) {
@@ -40,7 +39,7 @@ export function Footer({
                 aria-label={s.label}
                 className="grid h-10 w-10 place-items-center rounded-full border border-border bg-surface text-ink-soft transition-all hover:-translate-y-0.5 hover:border-gold hover:text-gold"
               >
-                <SocialIcon name={s.key} size={18} />
+                {s.iconNode}
               </a>
             ))}
           </div>

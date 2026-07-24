@@ -255,6 +255,9 @@ function mapProject(p: any): Project {
 
 /* --------------------------------- queries --------------------------------- */
 
+// Only the fields still editable in the CMS are fetched. Everything else
+// (hero buttons, ask-bar labels, nav, footer, contact wording, small labels…)
+// is hardcoded in src/content/site.ts, so those queries are intentionally gone.
 const settingsQuery = groq`*[_type == "siteSettings"][0]{
   name, role, tagline, description, about, location, email,
   "resumeUrl": resume.asset->url,
@@ -262,20 +265,9 @@ const settingsQuery = groq`*[_type == "siteSettings"][0]{
   stats,
   socials,
   sections,
-  hero,
-  nav,
-  askCopy,
   aboutHighlights,
   posterStatus,
-  posterPlaceholder,
-  educationHeading,
-  certView,
-  navResume,
-  navResumeMobile,
-  loaderText,
-  projectLabels,
-  contactCopy,
-  footerCopy
+  posterPlaceholder
 }`;
 
 const projectsQuery = groq`*[_type == "project"] | order(order asc, _createdAt asc){

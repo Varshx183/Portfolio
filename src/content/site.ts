@@ -122,7 +122,7 @@ export const navLabels: NavLabels = {
 /** Hero button labels (hardcoded — no longer edited in the CMS). */
 export const heroCopy: HeroCopy = {
   ctaPrimary: "View my projects",
-  ctaSecondary: "Contact",
+  ctaSecondary: "Let's Connect",
 };
 
 /* -------------------------------------------------------------------------- */
@@ -423,8 +423,8 @@ export const uiCopy: UiCopy = {
   // Certifications: the link under each card.
   certView: "View credential",
   // Navbar résumé buttons (desktop + mobile drawer).
-  navResume: "Résumé",
-  navResumeMobile: "Download Résumé",
+  navResume: "Resume",
+  navResumeMobile: "Download Resume",
   // Intro loading overlay.
   loaderText: "Charting the course…",
   // Projects section labels (filter, cards, and modal).
@@ -442,7 +442,7 @@ export const uiCopy: UiCopy = {
     cardHeading: "Let's set sail together",
     cardText:
       "I'm open to full-time roles, freelance voyages, and interesting collaborations. I usually reply within a day.",
-    resumeTitle: "Grab my résumé",
+    resumeTitle: "Grab my resume",
     resumeText: "The full logbook — one PDF.",
     resumeButton: "Download",
     nameLabel: "Name",
@@ -460,7 +460,7 @@ export const uiCopy: UiCopy = {
   footer: {
     navHeading: "Navigate",
     contactHeading: "Set Sail",
-    resumeLabel: "Download Résumé ↓",
+    resumeLabel: "Download Resume ↓",
     copyright: "Sailing the Grand Line of the web.",
     credit: "Built with Next.js, Tailwind & Framer Motion.",
   },
