@@ -10,7 +10,7 @@ export function Experience({
   experience,
   education,
   heading,
-  educationHeading = "Navigation School",
+  educationHeading = "Education",
 }: {
   experience: ExperienceItem[];
   education: EducationItem[];
@@ -127,7 +127,19 @@ export function Experience({
                     {edu.degree}
                   </h4>
                   <p className="text-sm font-medium text-gold">{edu.school}</p>
-                  <p className="mt-2 text-sm text-ink-muted">{edu.detail}</p>
+                  {edu.detail && (
+                    <ul className="mt-2 list-disc space-y-1.5 pl-5 text-left text-sm leading-relaxed text-ink-muted marker:text-gold sm:text-justify">
+                      {edu.detail
+                        .split("\n")
+                        .map((d) => d.trim())
+                        .filter(Boolean)
+                        .map((d, di) => (
+                          <li key={di} className="pl-1">
+                            {d}
+                          </li>
+                        ))}
+                    </ul>
+                  )}
                 </article>
               </Reveal>
             ))}

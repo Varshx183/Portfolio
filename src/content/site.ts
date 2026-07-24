@@ -419,7 +419,7 @@ export const uiCopy: UiCopy = {
   posterStatus: "Wanted Alive",
   posterPlaceholder: "Wanted",
   // Experience section: the heading above the education cards.
-  educationHeading: "Navigation School",
+  educationHeading: "Education",
   // Certifications: the link under each card.
   certView: "View credential",
   // Navbar résumé buttons (desktop + mobile drawer).

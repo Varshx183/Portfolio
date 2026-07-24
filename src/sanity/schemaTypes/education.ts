@@ -8,7 +8,13 @@ export const education = defineType({
     defineField({ name: "degree", title: "Degree / program", type: "string", validation: (r) => r.required() }),
     defineField({ name: "school", title: "School", type: "string", validation: (r) => r.required() }),
     defineField({ name: "period", title: "Period", type: "string" }),
-    defineField({ name: "detail", title: "Detail", type: "text", rows: 2 }),
+    defineField({
+      name: "detail",
+      title: "Details (one point per line)",
+      description: "Each line becomes a bullet point.",
+      type: "text",
+      rows: 3,
+    }),
     defineField({ name: "order", title: "Sort order", type: "number", initialValue: 0 }),
   ],
   orderings: [
