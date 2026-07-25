@@ -5,6 +5,7 @@ import {
   motion,
   useReducedMotion,
   useScroll,
+  useSpring,
   useTransform,
   type MotionValue,
 } from "framer-motion";
@@ -27,10 +28,16 @@ export function Skills({
   const reduce = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Progress from 0 (section entering the viewport) to 1 (section centered).
+  // Progress from 0 (section entering the viewport) to 1 (section centered),
+  // spring-smoothed so the motion has a soft, high-end inertia to it.
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "center center"],
+  });
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 22,
+    mass: 0.4,
   });
 
   // The sideways spread only applies once the cards sit in a row (md+). On
@@ -68,7 +75,7 @@ export function Skills({
               group={group}
               dir={gi - center}
               spread={spread}
-              progress={scrollYProgress}
+              progress={progress}
               reduce={!!reduce}
             />
           ))}
@@ -94,11 +101,13 @@ function SkillGroupCard({
   reduce: boolean;
 }) {
   const desktop = spread > 0;
-  // Start pulled toward the center (opposite of the card's side), then settle
-  // into its natural position — so the row "opens up" as you scroll.
+  // The row "unfolds" from the center: each side card starts pulled inward,
+  // angled in 3D, lifted, and shrunk, then eases flat into its own position.
   const x = useTransform(progress, [0, 1], [-dir * spread, 0]);
-  const opacity = useTransform(progress, [0, 0.4], [0, 1]);
-  const scale = useTransform(progress, [0, 1], [0.94, 1]);
+  const y = useTransform(progress, [0, 1], [56, 0]);
+  const rotateY = useTransform(progress, [0, 1], [dir * 34, 0]);
+  const scale = useTransform(progress, [0, 1], [0.86, 1]);
+  const opacity = useTransform(progress, [0, 0.5], [0, 1]);
 
   const motionProps =
     reduce || !desktop
@@ -110,7 +119,16 @@ function SkillGroupCard({
             viewport: { once: true, margin: "-60px" },
             transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
           }
-      : { style: { x, opacity, scale } };
+      : {
+          style: {
+            x,
+            y,
+            rotateY,
+            scale,
+            opacity,
+            transformPerspective: 1100,
+          },
+        };
 
   return (
     <motion.div
