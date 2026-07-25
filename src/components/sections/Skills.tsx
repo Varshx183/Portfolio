@@ -35,17 +35,17 @@ export function Skills({
     offset: ["start end", "center center"],
   });
   const progress = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 22,
-    mass: 0.4,
+    stiffness: 55,
+    damping: 24,
+    mass: 0.7,
   });
 
   // The sideways spread only applies once the cards sit in a row (md+). On
   // mobile they're stacked, so we fall back to a simple fade-up per card.
-  const [spread, setSpread] = useState(220);
+  const [spread, setSpread] = useState(300);
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
-    const update = () => setSpread(mq.matches ? 220 : 0);
+    const update = () => setSpread(mq.matches ? 300 : 0);
     update();
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
