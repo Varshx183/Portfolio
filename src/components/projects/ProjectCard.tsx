@@ -1,14 +1,20 @@
 "use client";
 
+import { useState, type PointerEvent as ReactPointerEvent } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useMotionValue, useSpring } from "framer-motion";
 import { FiExternalLink, FiGithub, FiEye } from "react-icons/fi";
 import type { Project, ProjectLabels } from "@/content/site";
 
+/** Max tilt angle in degrees for the pointer-tracked poster tilt below. */
+const TILT_DEG = 7;
+
 /**
- * "Wanted Poster" project card. Hover lifts + tilts the poster and reveals a
- * quick-actions bar. The whole card opens a detail modal; inner links stop
- * propagation so they navigate instead of opening the modal.
+ * "Wanted Poster" project card. Hover lifts + tilts the poster (mouse-only,
+ * eased with a spring, disabled under reduced motion) and reveals a
+ * quick-actions bar plus a faint gold sheen that tracks the pointer, like
+ * light glinting off parchment. The whole card opens a detail modal; inner
+ * links stop propagation so they navigate instead of opening the modal.
  */
 export function ProjectCard({
   project,
@@ -20,10 +26,38 @@ export function ProjectCard({
   onOpen: () => void;
 }) {
   const reduce = useReducedMotion();
+  const [hovered, setHovered] = useState(false);
+  const [sheen, setSheen] = useState({ x: 50, y: 50 });
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springX = useSpring(rotateX, { stiffness: 300, damping: 30 });
+  const springY = useSpring(rotateY, { stiffness: 300, damping: 30 });
+
+  function onPointerMove(e: ReactPointerEvent<HTMLElement>) {
+    if (reduce || e.pointerType !== "mouse") return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    rotateX.set((0.5 - py) * TILT_DEG * 2);
+    rotateY.set((px - 0.5) * TILT_DEG * 2);
+    setSheen({ x: px * 100, y: py * 100 });
+  }
+  function onPointerEnter(e: ReactPointerEvent<HTMLElement>) {
+    if (e.pointerType === "mouse") setHovered(true);
+  }
+  function onPointerLeave() {
+    rotateX.set(0);
+    rotateY.set(0);
+    setHovered(false);
+  }
 
   return (
     <motion.article
       whileHover={reduce ? undefined : { y: -6 }}
+      style={reduce ? undefined : { rotateX: springX, rotateY: springY, transformPerspective: 1000 }}
+      onPointerMove={onPointerMove}
+      onPointerEnter={onPointerEnter}
+      onPointerLeave={onPointerLeave}
       className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border-2 border-gold/40 bg-surface shadow-poster transition-shadow hover:shadow-poster-lg"
       onClick={onOpen}
       onKeyDown={(e) => {
@@ -36,6 +70,26 @@ export function ProjectCard({
       role="button"
       aria-label={`View details for ${project.title}`}
     >
+      {/* Pointer-tracked gold sheen — sits above everything, never blocks clicks. */}
+      {!reduce && (
+        <div
+          className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300"
+          style={{ opacity: hovered ? 1 : 0 }}
+          aria-hidden
+        >
+          <div
+            className="absolute h-[140%] w-[140%] rounded-full"
+            style={{
+              left: `${sheen.x}%`,
+              top: `${sheen.y}%`,
+              transform: "translate(-50%, -50%)",
+              background:
+                "radial-gradient(circle, rgb(var(--gold) / 0.16) 0%, transparent 55%)",
+            }}
+          />
+        </div>
+      )}
+
       {/* Poster header (dashed trim + optional Featured badge) */}
       <div className="flex min-h-[2.25rem] items-center justify-end border-b-2 border-dashed border-gold/40 bg-surface-2 px-4 py-2">
         {project.featured && (

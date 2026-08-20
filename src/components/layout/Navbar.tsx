@@ -54,7 +54,7 @@ export function Navbar({
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-border bg-bg/80 backdrop-blur-md"
+          ? "glass border-b border-border"
           : "border-b border-transparent"
       }`}
     >
@@ -129,7 +129,7 @@ export function Navbar({
           <ThemeToggle />
           <button
             type="button"
-            className="grid h-10 w-10 place-items-center rounded-full border border-border bg-surface-2/70 text-ink lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full border border-border bg-surface-2/70 text-ink lg:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}

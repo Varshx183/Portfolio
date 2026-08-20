@@ -63,7 +63,7 @@ export function AskBar({
       <form
         onSubmit={onSubmit}
         role="search"
-        className="flex items-center gap-2 rounded-full border border-border bg-surface/70 px-4 py-1.5 backdrop-blur-sm transition-colors focus-within:border-gold"
+        className="glass flex items-center gap-2 rounded-full border border-border py-1 pl-4 pr-1 transition-colors focus-within:border-gold"
       >
         <FiSearch className="shrink-0 text-ink-muted" aria-hidden />
         <input
@@ -75,14 +75,14 @@ export function AskBar({
           }}
           placeholder={copy.placeholder}
           aria-label={copy.placeholder}
-          className="w-full bg-transparent py-2 text-sm text-ink outline-none placeholder:text-ink-muted/80"
+          className="w-full bg-transparent py-2 text-sm text-ink outline-none placeholder:text-ink-muted/80 focus-visible:ring-0 focus-visible:ring-offset-0"
         />
         <button
           type="submit"
           aria-label="Search"
-          className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gold text-bg transition-transform hover:scale-105"
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-gold text-bg transition-transform hover:scale-105"
         >
-          <FiArrowRight size={16} />
+          <FiArrowRight size={18} />
         </button>
       </form>
 

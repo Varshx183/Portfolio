@@ -145,6 +145,15 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/60 bg-transparent px-6 py-3 font-semibold text-gold transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold/10;
   }
 
+  /* Frosted-glass surface: blur + translucency + a faint top light-catch.
+     Callers add their own border/radius/shadow so this stays composable
+     (e.g. the hero stat grid relies on its parent's hairline dividers and
+     would show a doubled edge if this also drew a border). */
+  .glass {
+    @apply bg-surface/60 backdrop-blur-md;
+    box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.12);
+  }
+
   /* Decorative rope divider dash. */
   .rope {
     background-image: repeating-linear-gradient(

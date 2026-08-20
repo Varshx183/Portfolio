@@ -147,7 +147,7 @@ export function Hero({
             className={`mt-12 grid max-w-xl gap-px overflow-hidden rounded-2xl border border-border bg-border ${statCols}`}
           >
             {site.stats.map((s) => (
-              <div key={s.label} className="bg-surface/80 px-4 py-4 text-center backdrop-blur-sm">
+              <div key={s.label} className="glass px-4 py-4 text-center">
                 <dt className="sr-only">{s.label}</dt>
                 <dd className="font-display text-2xl font-bold text-gold">
                   {s.value}
