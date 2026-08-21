@@ -20,7 +20,7 @@ export function Experience({
 }) {
   const reduce = useReducedMotion();
   const [open, setOpen] = useState<Record<number, boolean>>({});
-  const COLLAPSED = 2; // bullets shown before "Show more"
+  const COLLAPSED = 1; // bullets shown before "Show more"
 
   return (
     <section id="experience" className="relative py-24 sm:py-28">
@@ -126,6 +126,18 @@ export function Experience({
               </li>
             );
           })}
+
+          {/* End cap — closes the timeline with the same briefcase marker
+              used at each entry, so the line doesn't trail off into empty
+              space. */}
+          {experience.length > 1 && (
+            <span
+              className="absolute -bottom-4 left-4 grid h-8 w-8 -translate-x-1/2 place-items-center rounded-full border-2 border-gold bg-surface text-gold shadow-gold sm:left-1/2"
+              aria-hidden
+            >
+              <FiBriefcase size={15} />
+            </span>
+          )}
         </ol>
 
         {/* Education */}
